@@ -10,7 +10,7 @@ exports.createPeca = async (req, res) => {
   );
 
   res.status(201).send({
-    message: "Pecas added successfully!",
+    message: "Peca adicionada com sucesso!",
     body: {
       peca: { nome, precoVenda, quantidadeEstoque }
     },
@@ -40,7 +40,7 @@ exports.updatePecaById = async (req, res) => {
     [nome, precoVenda, quantidadeEstoque, id_peca]
   );
 
-  res.status(200).send({ message: "Pecas Updated Successfully!" });
+  res.status(200).send({ message: "Peca atualizada com sucesso!" });
 };
 
 // ==> Método responsável por excluir uma 'Peca' pelo 'Id':
@@ -50,5 +50,5 @@ exports.deletePecaById = async (req, res) => {
     id_peca
   ]);
 
-  res.status(200).send({ message: 'Peca deleted successfully!', id_peca });
+  res.status(200).send({ message: 'Peca deletada com sucesso!', id_peca });
 };
