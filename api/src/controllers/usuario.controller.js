@@ -3,16 +3,16 @@ const db = require("../config/database");
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createUsuario = async (req, res) => {
-  const { nome, email, senha } = req.body;
+  const { nome, email, senha, id_tipoUsuario } = req.body;
   const { rows } = await db.query(
-    "INSERT INTO usuario (nome, email, senha) VALUES ($1, $2, $3)",
-    [nome, email, senha]
+    "INSERT INTO usuario (nome, email, senha, id_tipoUsuario) VALUES ($1, $2, $3, $4)",
+    [nome, email, senha, id_tipoUsuario]
   );
 
   res.status(201).send({
     message: "Usuario adicionado com sucesso!",
     body: {
-      usuario: { nome, email, senha }
+      usuario: { nome, email, senha, id_tipoUsuario }
     },
   });
 };
@@ -33,11 +33,11 @@ exports.findUsuarioById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Usuario' pelo 'Id':
 exports.updateUsuarioById = async (req, res) => {
   const id_usuario = parseInt(req.params.id);
-  const { nome, email, senha } = req.body;
+  const { nome, email, senha, id_tipoUsuario } = req.body;
 
   const response = await db.query(
-    "UPDATE usuario SET nome = $1, email = $2, senha = $3 WHERE id_usuario = $4",
-    [nome, email, senha, id_usuario]
+    "UPDATE usuario SET nome = $1, email = $2, senha = $3, id_tipoUsuario = $4 WHERE id_usuario = $5",
+    [nome, email, senha, id_usuario, id_tipoUsuario]
   );
 
   res.status(200).send({ message: "Usuario atualizado com sucesso!" });
