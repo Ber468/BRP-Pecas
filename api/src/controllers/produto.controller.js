@@ -19,14 +19,16 @@ exports.createProduto = async (req, res) => {
 
 // ==> Método responsável por listar todos os 'Produtos':
 exports.listAllProduto = async (req, res) => {
-  const response = await db.query('SELECT * FROM produto ORDER BY nome ASC');
+  const response = await db.query('SELECT produto.id_produto, produto.nome, produto.quantidadeEstoque, produto.precoVenda, tipoProduto.descricao ' 
+  +'as descricao from produto inner join tipoProduto on produto.id_tipoProduto = tipoProduto.id_tipoProduto');
   res.status(200).send(response.rows);
 };
 
 // ==> Método responsável por selecionar 'Produto' pelo 'Id':
 exports.findProdutoById = async (req, res) => {
   const id_produto = parseInt(req.params.id);
-  const response = await db.query('SELECT * FROM produto WHERE id_produto = $1', [id_produto]);
+  const response = await db.query('SELECT produto.nome, produto.quantidadeEstoque, produto.precoVenda, tipoProduto.descricao ' 
+  + 'as descricao from produto inner join tipoProduto on produto.id_tipoProduto = tipoProduto.id_tipoProduto WHERE id_produto = $1', [id_produto]);
   res.status(200).send(response.rows);
 }
 

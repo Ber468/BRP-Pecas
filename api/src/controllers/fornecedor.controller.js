@@ -37,8 +37,7 @@ exports.updateFornecedorById = async (req, res) => {
 
   const response = await db.query(
     "UPDATE fornecedor SET nomeFantasia = $1, razaoSocial = $2, cnpj = $3 WHERE id_fornecedor = $4",
-    [nomeFantasia, razaoSocial, cnpj]
-  );
+    [nomeFantasia, razaoSocial, cnpj, id_fornecedor]);
 
   res.status(200).send({ message: "Fornecedor atualizado com sucesso!" });
 };

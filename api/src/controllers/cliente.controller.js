@@ -37,7 +37,7 @@ exports.updateClienteById = async (req, res) => {
 
   const response = await db.query(
     "UPDATE cliente SET nome = $1, endereco = $2, cpf = $3, telefone = $4 WHERE id_cliente = $5",
-    [nome, endereco, cpf, telefone]
+    [nome, endereco, cpf, telefone, id_cliente]
   );
 
   res.status(200).send({ message: "Cliente atualizado com sucesso!" });

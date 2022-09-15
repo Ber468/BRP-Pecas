@@ -19,14 +19,16 @@ exports.createPedido = async (req, res) => {
 
 // ==> Método responsável por listar todos os 'Pedidos':
 exports.listAllPedido = async (req, res) => {
-  const response = await db.query('SELECT * FROM pedido ORDER BY descricao ASC');
+  const response = await db.query('SELECT pedido.id_pedido, pedido.descricao, pedido.data, fornecedor.nomeFantasia as nomeFantasia '
+  + 'from pedido inner join fornecedor on pedido.id_fornecedor = fornecedor.id_fornecedor');
   res.status(200).send(response.rows);
 };
 
 // ==> Método responsável por selecionar 'Pedido' pelo 'Id':
 exports.findPedidoById = async (req, res) => {
   const id_pedido = parseInt(req.params.id);
-  const response = await db.query('SELECT * FROM pedido WHERE id_pedido = $1', [id_pedido]);
+  const response = await db.query('SELECT pedido.descricao, pedido.data, fornecedor.nomeFantasia as nomeFantasia '
+  +'from pedido inner join fornecedor on pedido.id_fornecedor = fornecedor.id_fornecedor WHERE id_pedido = $1', [id_pedido]);
   res.status(200).send(response.rows);
 }
 
@@ -37,7 +39,7 @@ exports.updatePedidoById = async (req, res) => {
 
   const response = await db.query(
     "UPDATE pedido SET descricao = $1, data = $2, id_fornecedor = $3 WHERE id_pedido = $4",
-    [descricao, data, id_fornecedor]
+    [descricao, data, id_fornecedor, id_pedido]
   );
 
   res.status(200).send({ message: "Pedido atualizado com sucesso!" });
@@ -52,3 +54,6 @@ exports.deletePedidoById = async (req, res) => {
 
   res.status(200).send({ message: 'Pedido deletado com sucesso!', id_pedido });
 };
+
+'SELECT pedido.descricao, pedido.data, fornecedor.nomeFantasia as nomeFantasia '
++ 'from pedido inner join fornecedor on pedido.id_fornecedor = fornecedor.id_fornecedor';

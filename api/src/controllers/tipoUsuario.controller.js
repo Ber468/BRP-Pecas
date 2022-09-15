@@ -3,23 +3,23 @@ const db = require("../config/database");
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createTipoUsuario = async (req, res) => {
-  const { descricao } = req.body;
+  const { nome } = req.body;
   const { rows } = await db.query(
-    "INSERT INTO tipoUsuario (descricao) VALUES ($1)",
-    [descricao]
+    "INSERT INTO tipoUsuario (nome) VALUES ($1)",
+    [nome]
   );
 
   res.status(201).send({
     message: "Tipo de Usuario adicionado com sucesso!",
     body: {
-      tipoUsuario: { descricao }
+      tipoUsuario: { nome }
     },
   });
 };
 
 // ==> Método responsável por listar todos os 'Tipos de Usuarios':
 exports.listAllTipoUsuario = async (req, res) => {
-  const response = await db.query('SELECT * FROM tipoUsuario ORDER BY descricao ASC');
+  const response = await db.query('SELECT * FROM tipoUsuario ORDER BY nome ASC');
   res.status(200).send(response.rows);
 };
 
@@ -33,11 +33,11 @@ exports.findTipoUsuarioById = async (req, res) => {
 // ==> Método responsável por atualizar um 'TipoUsuario' pelo 'Id':
 exports.updateTipoUsuarioById = async (req, res) => {
   const id_tipoUsuario = parseInt(req.params.id);
-  const { descricao } = req.body;
+  const { nome } = req.body;
 
   const response = await db.query(
-    "UPDATE tipoUsuario SET descricao = $1 WHERE id_tipoUsuario = $2",
-    [descricao, id_tipoUsuario]
+    "UPDATE tipoUsuario SET nome = $1 WHERE id_tipoUsuario = $2",
+    [nome, id_tipoUsuario]
   );
 
   res.status(200).send({ message: "Tipo de Usuario atualizado com sucesso!" });

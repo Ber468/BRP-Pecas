@@ -3,23 +3,23 @@ const db = require("../config/database");
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createTipoProduto = async (req, res) => {
-  const { nome } = req.body;
+  const { descricao } = req.body;
   const { rows } = await db.query(
-    "INSERT INTO tipoProduto (nome) VALUES ($1)",
-    [nome]
+    "INSERT INTO tipoProduto (descricao) VALUES ($1)",
+    [descricao]
   );
 
   res.status(201).send({
     message: "Tipo de Produto adicionado com sucesso!",
     body: {
-      tipoProduto: { nome }
+      tipoProduto: { descricao }
     },
   });
 };
 
 // ==> Método responsável por listar todos os 'Tipos de Produtos':
 exports.listAllTipoProduto = async (req, res) => {
-  const response = await db.query('SELECT * FROM tipoProduto ORDER BY nome ASC');
+  const response = await db.query('SELECT * FROM tipoProduto ORDER BY descricao ASC');
   res.status(200).send(response.rows);
 };
 
@@ -33,11 +33,11 @@ exports.findTipoProdutoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'TipoProduto' pelo 'Id':
 exports.updateTipoProdutoById = async (req, res) => {
   const id_tipoProduto = parseInt(req.params.id);
-  const { nome } = req.body;
+  const { descricao } = req.body;
 
   const response = await db.query(
-    "UPDATE tipoProduto SET nome = $1 WHERE id_tipoProduto = $2",
-    [nome, id_tipoProduto]
+    "UPDATE tipoProduto SET descricao = $1 WHERE id_tipoProduto = $2",
+    [descricao, id_tipoProduto]
   );
 
   res.status(200).send({ message: "Tipo de Produto atualizado com sucesso!" });

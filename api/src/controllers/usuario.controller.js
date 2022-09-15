@@ -19,14 +19,17 @@ exports.createUsuario = async (req, res) => {
 
 // ==> Método responsável por listar todos os 'Usuarios':
 exports.listAllUsuario = async (req, res) => {
-  const response = await db.query('SELECT * FROM usuario ORDER BY nome ASC');
+  const response = await db.query('SELECT usuario.id_usuario, usuario.nome, usuario.email, usuario.senha,  tipoUsuario.tipo_nome as tipo_nome ' 
+  +'from usuario  inner join tipoUsuario on usuario.id_tipoUsuario = tipoUsuario.id_tipoUsuario');
   res.status(200).send(response.rows);
 };
 
 // ==> Método responsável por selecionar 'Usuarios' pelo 'Id':
 exports.findUsuarioById = async (req, res) => {
   const id_usuario = parseInt(req.params.id);
-  const response = await db.query('SELECT * FROM usuario WHERE id_usuario = $1', [id_usuario]);
+  const response = await db.query
+  ("SELECT usuario.nome, usuario.email, usuario.senha, tipoUsuario.tipo_nome as tipo_nome "  
+  +"from usuario inner join tipoUsuario on usuario.id_tipoUsuario = tipoUsuario.id_tipoUsuario where id_usuario = $1", [id_usuario])
   res.status(200).send(response.rows);
 }
 
@@ -37,7 +40,7 @@ exports.updateUsuarioById = async (req, res) => {
 
   const response = await db.query(
     "UPDATE usuario SET nome = $1, email = $2, senha = $3, id_tipoUsuario = $4 WHERE id_usuario = $5",
-    [nome, email, senha, id_usuario, id_tipoUsuario]
+    [nome, email, senha, id_tipoUsuario, id_usuario]
   );
 
   res.status(200).send({ message: "Usuario atualizado com sucesso!" });
