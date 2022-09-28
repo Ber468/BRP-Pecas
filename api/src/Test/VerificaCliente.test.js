@@ -21,12 +21,12 @@ describe('Teste inclusao de um cliente', () => {
 //  describe('Teste alterar cliente', () => {
 //     it('Deve alterar um cliente', async () => {
 //         const response = await request(app)
-//         .put("/api/cliente/13")
+//         .put("/api/cliente/16")
 //         .send({
-//             nome: "Gustavo",
-//             endereco: "Rua Pedro de Oliveira",
+//             nome: "Fulano",
+//             endereco: "Rua 1",
 //             cpf: "01020304098",
-//             telefone: "054996154884",
+//             telefone: "054996154784",
 //     });
 //     expect(response.status).toBe(200);
 //     expect(response.body).toHaveProperty("message", "Cliente atualizado com sucesso!");

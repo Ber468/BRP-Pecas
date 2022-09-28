@@ -1,5 +1,5 @@
 git add .
-git commit -m "Implementação Testes de integração"
+git commit -m "Ajustes de testes"
 git push -u origin main
 
 
