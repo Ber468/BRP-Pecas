@@ -11,6 +11,7 @@ import { DataTable } from "../containers/dataTable/dataTable";
 import { Feedback } from "../containers/feedback/feedback";
 import { Fields } from "../containers/fields/fields";
 import { Modais } from "../containers/modais/modais";
+import { Vendas } from "../containers/vendas/vendas";
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/fields" element={<Fields />} />
           <Route path="/dataTable" element={<DataTable />} />
+          <Route path="/vendas" element={<Vendas />} />
 
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />

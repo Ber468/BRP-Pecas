@@ -4,6 +4,7 @@ import {
   AiOutlineFileText,
   AiOutlineRead,
   AiOutlineTable,
+  AiOutlineShoppingCart
 } from "react-icons/ai";
 import { MdOutlineFeedback } from "react-icons/md";
 
@@ -29,7 +30,7 @@ const SideBar = () => {
           )
         }
       >
-        Material UI
+        BRP-Pecas
       </SideBarHeader>
       <SideBarContent>
         <Route onClick={() => _navigate("/")}>
@@ -62,11 +63,17 @@ const SideBar = () => {
             DataTable
           </Typography>
         </Route>
+        <Route onClick={() => _navigate("/vendas")}>
+          <Icon component={AiOutlineShoppingCart} width={6} height={6} />
+          <Typography variant="body2" style={{ color: palette.grey[300] }}>
+            Vendas
+          </Typography>
+        </Route>
       </SideBarContent>
       <SideBarFooter>
         <Avatar />
         <Typography variant="subtitle1" style={{ color: palette.common.white }}>
-          Ranielli
+          Bernardo
         </Typography>
       </SideBarFooter>
     </SideBarContainer>
