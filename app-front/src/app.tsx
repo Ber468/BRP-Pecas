@@ -4,6 +4,7 @@ import {
   ThemeProvider as ThemeProviderMui,
 } from "@mui/material";
 import { SnackbarProvider } from "notistack";
+// import { AuthProvider } from "./contexts/AuthContext";
 
 import { Routes } from "./routes/routes";
 import { GlobalStyles } from "./styles/global.styles";
@@ -11,6 +12,7 @@ import theme from "./styles/theme";
 
 function App() {
   return (
+
     <StyledEngineProvider injectFirst>
       <ThemeProviderMui theme={theme}>
         <ThemeProvider theme={theme}>
@@ -21,6 +23,7 @@ function App() {
         </ThemeProvider>
       </ThemeProviderMui>
     </StyledEngineProvider>
+
   );
 }
 

@@ -6,11 +6,10 @@ describe('Teste inclusao de um cliente', () => {
         const response = await request(app)
         .post("/api/cliente")
         .send({
-            // id_cliente: 3,
-            nome: "Fulano",
+            nome: "Carlos",
             endereco: "Barra Funda",
             cpf: "23420304074",
-            telefone: "054996774123",    
+            telefone: null,    
     });
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty("message", "Cliente adicionado com sucesso!");
@@ -37,7 +36,7 @@ describe('Teste inclusao de um cliente', () => {
 //   describe('Teste excluir cliente', () => {
 //     it('Deve excluir um cliente', async () => {
 //         const response = await request(app)
-//         .delete("/api/cliente/11")
+//         .delete("/api/cliente/17")
 //         .send({});
 //     expect(response.status).toBe(200);
 //     expect(response.body).toHaveProperty("message", "Cliente deletado com sucesso!");
