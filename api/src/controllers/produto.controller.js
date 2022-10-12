@@ -1,9 +1,21 @@
 const db = require("../config/database");
+const isEmpty = require("../validation/isEmpty");
 
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createProduto = async (req, res) => {
   const { nome, precoVenda, quantidadeEstoque, id_tipoProduto } = req.body;
+  const verificador = isEmpty([
+    { nome: "Nome", valor: nome },
+    { nome: "Preço de Venda", valor: precoVenda },
+    { nome: "Quantidade em Estoque", valor: quantidadeEstoque },
+    { nome: "Tipo de Produto", valor: id_tipoProduto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO produto (nome, precoVenda, quantidadeEstoque, id_tipoProduto) VALUES ($1, $2, $3, $4)",
     [nome, precoVenda, quantidadeEstoque, id_tipoProduto]
@@ -15,6 +27,7 @@ exports.createProduto = async (req, res) => {
       produto: { nome, precoVenda, quantidadeEstoque, id_tipoProduto }
     },
   });
+};
 };
 
 // ==> Método responsável por listar todos os 'Produtos':
@@ -35,6 +48,17 @@ exports.findProdutoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Produto' pelo 'Id':
 exports.updateProdutoById = async (req, res) => {
   const id_produto = parseInt(req.params.id);
+  const verificador = isEmpty([
+    { nome: "Nome", valor: req.body.nome },
+    { nome: "Preço de Venda", valor: req.body.precoVenda },
+    { nome: "Quantidade em Estoque", valor: req.body.quantidadeEstoque },
+    { nome: "Tipo de Produto", valor: req.body.id_tipoProduto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { nome, precoVenda, quantidadeEstoque, id_tipoProduto } = req.body;
 
   const response = await db.query(
@@ -43,6 +67,7 @@ exports.updateProdutoById = async (req, res) => {
   );
 
   res.status(200).send({ message: "Produto atualizado com sucesso!" });
+};
 };
 
 // ==> Método responsável por excluir uma 'Produto' pelo 'Id':

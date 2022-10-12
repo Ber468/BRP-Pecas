@@ -1,9 +1,20 @@
 const db = require("../config/database");
+const isEmpty = require("../validation/isEmpty");
 
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createPedido = async (req, res) => {
   const { descricao, data, id_fornecedor } = req.body;
+  const verificador = isEmpty([
+    { nome: "Descrição", valor: descricao },
+    { nome: "Data", valor: data },
+    { nome: "Id do Fornecedor", valor: id_fornecedor },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO pedido (descricao, data, id_fornecedor) VALUES ($1, $2, $3)",
     [descricao, data, id_fornecedor ]
@@ -15,6 +26,7 @@ exports.createPedido = async (req, res) => {
       pedido: { descricao, data, id_fornecedor }
     },
   });
+};
 };
 
 // ==> Método responsável por listar todos os 'Pedidos':
@@ -35,6 +47,16 @@ exports.findPedidoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Pedido' pelo 'Id':
 exports.updatePedidoById = async (req, res) => {
   const id_pedido = parseInt(req.params.id);
+  const verificador = isEmpty([
+    { nome: "Descrição", valor: descricao },
+    { nome: "Data", valor: data },
+    { nome: "Id do Fornecedor", valor: id_fornecedor },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { descricao, data, id_fornecedor } = req.body;
 
   const response = await db.query(
@@ -43,6 +65,7 @@ exports.updatePedidoById = async (req, res) => {
   );
 
   res.status(200).send({ message: "Pedido atualizado com sucesso!" });
+};
 };
 
 // ==> Método responsável por excluir uma 'Pedido' pelo 'Id':

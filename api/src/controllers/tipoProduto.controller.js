@@ -1,9 +1,18 @@
 const db = require("../config/database");
+const isEmpty = require("../validation/isEmpty");
 
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createTipoProduto = async (req, res) => {
   const { descricao } = req.body;
+  const verificador = isEmpty([
+    { nome: "Descrição", valor: descricao },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO tipoProduto (descricao) VALUES ($1)",
     [descricao]
@@ -15,6 +24,7 @@ exports.createTipoProduto = async (req, res) => {
       tipoProduto: { descricao }
     },
   });
+};
 };
 
 // ==> Método responsável por listar todos os 'Tipos de Produtos':
@@ -33,6 +43,14 @@ exports.findTipoProdutoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'TipoProduto' pelo 'Id':
 exports.updateTipoProdutoById = async (req, res) => {
   const id_tipoProduto = parseInt(req.params.id);
+  const verificador = isEmpty([
+    { nome: "Descrição", valor: descricao },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { descricao } = req.body;
 
   const response = await db.query(
@@ -41,6 +59,7 @@ exports.updateTipoProdutoById = async (req, res) => {
   );
 
   res.status(200).send({ message: "Tipo de Produto atualizado com sucesso!" });
+};
 };
 
 // ==> Método responsável por excluir um 'TipoProduto' pelo 'Id':

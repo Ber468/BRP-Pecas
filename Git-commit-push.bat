@@ -1,5 +1,5 @@
 git add .
-git commit -m "Ajustes de testes"
+git commit -m "Criacao dos cruds basicos"
 git push -u origin main
 
 
