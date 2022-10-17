@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,8 @@ const FornecedorForm = (props) => {
         const { name, value } = event.target;
         props.setFornecedor({ ...props.fornecedor, [name]: value });
     };
+
+    const [cnpjMask, setCnpjMask] = useState(props.fornecedor.cnpj);
 
     const {
         register,
@@ -86,8 +88,11 @@ const FornecedorForm = (props) => {
                                 <InputMask
                                     name="cnpj"
                                     mask="99.999.999/9999-99"
-                                    defaultValue={props.fornecedor.cnpj}
-                                    onChange={handleInputChange}
+                                    value={cnpjMask}
+                                    onChange={(e) => {
+                                        setCnpjMask(e.value);
+                                        props.setFornecedor({ ...props.fornecedor, cnpj: e.value });
+                                    }}
                                 />
                                 {errors.cnpj && (
                                     <span style={{ color: "red" }}>{errors.cnpj.message}</span>

@@ -32,7 +32,7 @@ function Menu() {
           label: 'Tipo de Usuário',
           icon: 'pi pi-users',
           command: () => {
-            navigate("/tipoUsuario");
+            navigate("/TipoUsuario");
         },
       },
         {

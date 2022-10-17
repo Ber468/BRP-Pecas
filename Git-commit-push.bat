@@ -1,5 +1,5 @@
 git add .
-git commit -m "Criacao dos cruds basicos"
+git commit -m "Ajustes do crud Fornecedor"
 git push -u origin main
 
 
