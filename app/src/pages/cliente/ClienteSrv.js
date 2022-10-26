@@ -7,8 +7,10 @@ class ClienteSrv {
     async incluir(data) {
         return await axios.post(this.url, data).catch(err => { throw err });
     }
-    async alterar(data) {
-        return await axios.put(this.url, data).catch(err => { throw err });
+    async alterar({id_cliente, ...data}) {
+        return await axios.put(`${this.url}/${id_cliente}`, {...data}).catch(err => { 
+        throw err;
+    });
     }
     async excluir(id_cliente) {
         return await axios.delete(`${this.url}/${id_cliente}`).catch(err => { 

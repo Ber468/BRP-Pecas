@@ -44,18 +44,18 @@ const template2 = {
     );
   },
 };
-const VendaList = (props) => {
+const UsuarioList = (props) => {
   const countryBodyTemplate = (rowData) => {
     return (
       <React.Fragment>
         <button
-          onClick={() => props.editar(rowData.id_venda)}
+          onClick={() => props.editar(rowData.id_usuario)}
           className="btn btn-warning"
         >
           Editar
         </button>
         <button
-          onClick={() => props.excluir(rowData.id_venda)}
+          onClick={() => props.excluir(rowData.id_usuario)}
           className="btn btn-danger"
         >
           Excluir
@@ -66,7 +66,7 @@ const VendaList = (props) => {
   return (
     <div>
       <div>
-        <h4>Listagem de Vendas</h4>
+        <h4>Listagem de Usuários</h4>
         <button
           button
           type="button"
@@ -84,7 +84,7 @@ const VendaList = (props) => {
         </button>
         <div className="card">
           <DataTable
-            value={props.vendas}
+            value={props.usuarios}
             responsiveLayout="scroll"
             selectionMode="single"
             paginator
@@ -93,15 +93,15 @@ const VendaList = (props) => {
             paginatorClassName="justify-content-center"
             className="mt-6"
           >
-            <Column field="data" header="Data" sortable filter></Column>
+            <Column field="nome" header="Nome" sortable filter></Column>
+            <Column field="email" header="Email" sortable filter></Column>
+            <Column field="senha" header="Senha" sortable filter></Column>
             <Column
-              field="valortotal"
-              header="Valor Total"
+              field="tipo_nome"
+              header="Tipo Usuario"
               sortable
               filter
             ></Column>
-            <Column field="nome" header="Usuario" sortable filter></Column>
-            <Column field="nome" header="Cliente" sortable filter></Column>
             <Column header="Operações" body={countryBodyTemplate}></Column>
           </DataTable>
         </div>
@@ -109,4 +109,4 @@ const VendaList = (props) => {
     </div>
   );
 };
-export default VendaList;
+export default UsuarioList;

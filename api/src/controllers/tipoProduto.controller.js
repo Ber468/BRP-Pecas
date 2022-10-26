@@ -5,14 +5,6 @@ const isEmpty = require("../validation/isEmpty");
 
 exports.createTipoProduto = async (req, res) => {
   const { descricao } = req.body;
-  const verificador = isEmpty([
-    { nome: "Descrição", valor: descricao },
-  ]);
-  if (verificador) {
-    res.status(500).send({
-      message: verificador,
-    });
-  } else {
   const { rows } = await db.query(
     "INSERT INTO tipoProduto (descricao) VALUES ($1)",
     [descricao]
@@ -21,36 +13,32 @@ exports.createTipoProduto = async (req, res) => {
   res.status(201).send({
     message: "Tipo de Produto adicionado com sucesso!",
     body: {
-      tipoProduto: { descricao }
+      tipoProduto: { descricao },
     },
   });
-};
 };
 
 // ==> Método responsável por listar todos os 'Tipos de Produtos':
 exports.listAllTipoProduto = async (req, res) => {
-  const response = await db.query('SELECT * FROM tipoProduto ORDER BY descricao ASC');
+  const response = await db.query(
+    "SELECT * FROM tipoProduto ORDER BY descricao ASC"
+  );
   res.status(200).send(response.rows);
 };
 
 // ==> Método responsável por selecionar 'TipoProduto' pelo 'Id':
 exports.findTipoProdutoById = async (req, res) => {
   const id_tipoProduto = parseInt(req.params.id);
-  const response = await db.query('SELECT * FROM tipoProduto WHERE id_tipoProduto = $1', [id_tipoProduto]);
+  const response = await db.query(
+    "SELECT * FROM tipoProduto WHERE id_tipoProduto = $1",
+    [id_tipoProduto]
+  );
   res.status(200).send(response.rows);
-}
+};
 
 // ==> Método responsável por atualizar um 'TipoProduto' pelo 'Id':
 exports.updateTipoProdutoById = async (req, res) => {
   const id_tipoProduto = parseInt(req.params.id);
-  const verificador = isEmpty([
-    { nome: "Descrição", valor: descricao },
-  ]);
-  if (verificador) {
-    res.status(500).send({
-      message: verificador,
-    });
-  } else {
   const { descricao } = req.body;
 
   const response = await db.query(
@@ -60,14 +48,15 @@ exports.updateTipoProdutoById = async (req, res) => {
 
   res.status(200).send({ message: "Tipo de Produto atualizado com sucesso!" });
 };
-};
 
 // ==> Método responsável por excluir um 'TipoProduto' pelo 'Id':
 exports.deleteTipoProdutoById = async (req, res) => {
   const id_tipoProduto = parseInt(req.params.id);
-  await db.query('DELETE FROM tipoProduto WHERE id_tipoProduto = $1', [
-    id_tipoProduto
+  await db.query("DELETE FROM tipoProduto WHERE id_tipoProduto = $1", [
+    id_tipoProduto,
   ]);
 
-  res.status(200).send({ message: 'Tipo de Produto deletado com sucesso!', id_tipoProduto });
+  res
+    .status(200)
+    .send({ message: "Tipo de Produto deletado com sucesso!", id_tipoProduto });
 };

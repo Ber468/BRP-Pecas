@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputMask } from "primereact/inputmask";
 import { Button } from "primereact/button";
@@ -10,6 +10,9 @@ const ClienteForm = (props) => {
         const { name, value } = event.target;
         props.setCliente({ ...props.cliente, [name]: value });
     };
+
+    const [cpfMask, setCpfMask] = useState(props.cliente.cpf);
+    const [telefoneMask, setTelefoneMask] = useState(props.cliente.telefone);
 
     const {
         register,
@@ -87,8 +90,11 @@ const ClienteForm = (props) => {
                                 <InputMask
                                     name="cpf"
                                     mask="999.999.999-99"
-                                    defaultValue={props.cliente.cpf}
-                                    onChange={handleInputChange}
+                                    value={cpfMask}
+                                    onChange={(e) => {
+                                        setCpfMask(e.value);
+                                        props.setCliente({ ...props.cliente, cpf: e.value });
+                                    }}
                                 />
                                 {errors.cpf && (
                                     <span style={{ color: "red" }}>{errors.cpf.message}</span>
@@ -101,8 +107,11 @@ const ClienteForm = (props) => {
                                 <InputMask
                                     name="telefone"
                                     mask="(99) 99999-9999"
-                                    defaultValue={props.cliente.telefone}
-                                    onChange={handleInputChange}
+                                    value={telefoneMask}
+                                    onChange={(e) => {
+                                        setTelefoneMask(e.value);
+                                        props.setCliente({ ...props.cliente, telefone: e.value });
+                                    }}
                                 />
                                 {errors.telefone && (
                                     <span style={{ color: "red" }}>{errors.telefone.message}</span>
