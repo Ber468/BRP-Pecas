@@ -9,6 +9,7 @@ const TipoProdutoCon = lazy(() => import("../pages/tipoProduto/TipoProdutoCon"))
 const UsuarioCon = lazy(() => import("../pages/usuario/UsuarioCon"));
 const VendaCon = lazy(() => import("../pages/venda/VendaCon"));
 const PedidoCon = lazy(() => import("../pages/pedido/PedidoCon"));
+const ProdutoCon = lazy(() => import("../pages/produto/ProdutoCon"));
 
 function Rotas() {
   return (
@@ -24,6 +25,7 @@ function Rotas() {
           <Route path="/usuario" element={<UsuarioCon />} />
           <Route path="/venda" element={<VendaCon />} />
           <Route path="/pedido" element={<PedidoCon />} />
+          <Route path="/produto" element={<ProdutoCon />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
