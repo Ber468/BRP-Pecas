@@ -5,122 +5,125 @@ import { useForm } from "react-hook-form";
 import { InputMask } from "primereact/inputmask";
 
 const FornecedorForm = (props) => {
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        props.setFornecedor({ ...props.fornecedor, [name]: value });
-    };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    props.setFornecedor({ ...props.fornecedor, [name]: value });
+  };
 
-    const [cnpjMask, setCnpjMask] = useState(props.fornecedor.cnpj);
+  const [cnpjMask, setCnpjMask] = useState(props.fornecedor.cnpj);
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-    
-    const onSubmit = (data) => {
-        props.salvar();
-    };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div style={{ padding: 20 }}>
-                <div className="card">
-                    <h5>Cadastro de Fornecedores</h5>
-                    <div style={{ marginLeft: "33em" }}>
-                        <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
-                                <label htmlFor="nomefantasia">Nome Fantasia</label>
-                                <InputText
-                                    name="nomefantasia"
-                                    {...register("nomefantasia", {
-                                        required: {
-                                            value: true,
-                                            message: "Nome Fantasia é Campo obrigatório!",
-                                        },
-                                        maxLength: {
-                                            value: 50,
-                                            message: "Nome Fantasia deve ter no máximo 50 caracteres!",
-                                        },
-                                        minLength: {
-                                            value: 2,
-                                            message: "Nome Fantasia deve ter no mínimo 2 caracteres!",
-                                        },
-                                    })}
-                                    defaultValue={props.fornecedor.nomefantasia}
-                                    onChange={handleInputChange}
-                                />
-                                {errors.nomefantasia && (
-                                    <span style={{ color: "red" }}>{errors.nomefantasia.message}</span>
-                                )}
-                            </div>
-                            </div>
-                            <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
-                                <label htmlFor="razaosocial">Razão Social</label>
-                                <InputText
-                                    name="razaosocial"
-                                    {...register("razaosocial", {
-                                        required: {
-                                            value: true,
-                                            message: "Razão Social é Campo obrigatório!",
-                                        },
-                                        maxLength: {
-                                            value: 50,
-                                            message: "Razão Social deve ter no máximo 50 caracteres!",
-                                        },
-                                        minLength: {
-                                            value: 2,
-                                            message: "Razão Social deve ter no mínimo 2 caracteres!",
-                                        },
-                                    })}
-                                    defaultValue={props.fornecedor.razaosocial}
-                                    onChange={handleInputChange}
-                                />
-                                {errors.razaosocial && (
-                                    <span style={{ color: "red" }}>{errors.razaosocial.message}</span>
-                                )}
-                            </div>
-                            </div>
-                            <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
-                                <label htmlFor="cnpj">CNPJ</label>
-                                <InputMask
-                                    name="cnpj"
-                                    mask="99.999.999/9999-99"
-                                    value={cnpjMask}
-                                    onChange={(e) => {
-                                        setCnpjMask(e.value);
-                                        props.setFornecedor({ ...props.fornecedor, cnpj: e.value });
-                                    }}
-                                />
-                                {errors.cnpj && (
-                                    <span style={{ color: "red" }}>{errors.cnpj.message}</span>
-                                )}
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div>
-                                <Button
-                                    type="submit"
-                                    icon="pi pi-pencil"
-                                    className="p-button-rounded p-button-text "
-                                    label="Salvar"
-                                ></Button>
-                                <Button
-                                    type="button"
-                                    icon="pi pi-trash"
-                                    className="p-button-rounded p-button-text"
-                                    label="Cancelar"
-                                    onClick={props.cancelar}
-                                ></Button>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                        );
-                    };
+  const onSubmit = (data) => {
+    props.salvar();
+  };
 
-                    export default FornecedorForm;
-                            
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div style={{ padding: 20 }}>
+        <div className="card">
+          <h5>Cadastro de Fornecedores</h5>
+          <div style={{ marginLeft: "33em" }}>
+            <div className="p-fluid grid formgrid">
+              <div className="field col-12  md:col-4">
+                <label htmlFor="nomefantasia">Nome Fantasia</label>
+                <InputText
+                  name="nomefantasia"
+                  {...register("nomefantasia", {
+                    required: {
+                      value: true,
+                      message: "Nome Fantasia é Campo obrigatório!",
+                    },
+                    maxLength: {
+                      value: 50,
+                      message:
+                        "Nome Fantasia deve ter no máximo 50 caracteres!",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Nome Fantasia deve ter no mínimo 2 caracteres!",
+                    },
+                  })}
+                  defaultValue={props.fornecedor.nomefantasia}
+                  onChange={handleInputChange}
+                />
+                {errors.nomefantasia && (
+                  <span style={{ color: "red" }}>
+                    {errors.nomefantasia.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="p-fluid grid formgrid">
+              <div className="field col-12  md:col-4">
+                <label htmlFor="razaosocial">Razão Social</label>
+                <InputText
+                  name="razaosocial"
+                  {...register("razaosocial", {
+                    required: {
+                      value: true,
+                      message: "Razão Social é Campo obrigatório!",
+                    },
+                    maxLength: {
+                      value: 50,
+                      message: "Razão Social deve ter no máximo 50 caracteres!",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Razão Social deve ter no mínimo 2 caracteres!",
+                    },
+                  })}
+                  defaultValue={props.fornecedor.razaosocial}
+                  onChange={handleInputChange}
+                />
+                {errors.razaosocial && (
+                  <span style={{ color: "red" }}>
+                    {errors.razaosocial.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="p-fluid grid formgrid">
+              <div className="field col-12  md:col-4">
+                <label htmlFor="cnpj">CNPJ</label>
+                <InputMask
+                  name="cnpj"
+                  mask="99.999.999/9999-99"
+                  value={cnpjMask}
+                  onChange={(e) => {
+                    setCnpjMask(e.value);
+                    props.setFornecedor({ ...props.fornecedor, cnpj: e.value });
+                  }}
+                />
+                {errors.cnpj && (
+                  <span style={{ color: "red" }}>{errors.cnpj.message}</span>
+                )}
+              </div>
+            </div>
+          </div>
+          <div>
+            <Button
+              type="submit"
+              icon="pi pi-pencil"
+              className="p-button-rounded p-button-text "
+              label="Salvar"
+            ></Button>
+            <Button
+              type="button"
+              icon="pi pi-trash"
+              className="p-button-rounded p-button-text"
+              label="Cancelar"
+              onClick={props.cancelar}
+            ></Button>
+          </div>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default FornecedorForm;

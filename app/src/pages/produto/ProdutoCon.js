@@ -59,7 +59,7 @@ function ProdutoCont() {
   const initialState = {
     id_produto: null,
     nome: "",
-    precovenda: 0,
+    precovenda: null,
     quantidadeestoque: 0,
     id_tipoproduto: 0,
   };
@@ -76,7 +76,12 @@ function ProdutoCont() {
     if (produto.id_produto == null) {
       // inclussão
 
-      ProdutoSrv.incluir(produto)
+      ProdutoSrv.incluir({
+        ...produto,
+        precovenda: Number(
+          produto.precovenda.replace(".", "").replace(",", ".")
+        ),
+      })
         .then((response) => {
           setEditando(false);
           onClickAtualizar();
@@ -96,7 +101,12 @@ function ProdutoCont() {
         });
     } else {
       // alteração
-      ProdutoSrv.alterar(produto)
+      ProdutoSrv.alterar({
+        ...produto,
+        precovenda: Number(
+          produto.precovenda.replace(".", "").replace(",", ".")
+        ),
+      })
         .then((response) => {
           setEditando(false);
           onClickAtualizar();

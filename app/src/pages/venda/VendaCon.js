@@ -144,7 +144,7 @@ function VendaCont() {
   };
 
   const editar = (id_venda) => {
-    setVenda(usuarios.filter((venda) => venda.id_venda === id_venda)[0]);
+    setVenda(vendas.filter((venda) => venda.id_venda === id_venda)[0]);
     setEditando(true);
   };
 

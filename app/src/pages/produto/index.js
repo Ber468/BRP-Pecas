@@ -21,7 +21,7 @@ export default function Produtos() {
       <h1>Relação de Produtos</h1>
       <ul>
         {produtos.map((produto) => (
-          <li key={produto.id_usuario}>
+          <li key={produto.id_produto}>
             <b>Nome:</b>
             {produto.nome}
             <br />

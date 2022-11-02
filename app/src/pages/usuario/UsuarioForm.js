@@ -26,10 +26,10 @@ const UsuarioForm = (props) => {
           <div style={{ marginLeft: "33em" }}>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
-                <label htmlFor="nome">Nome</label>
+                <label htmlFor="nome_usuario">Nome</label>
                 <InputText
-                  name="nome"
-                  {...register("nome", {
+                  name="nome_usuario"
+                  {...register("nome_usuario", {
                     required: {
                       value: true,
                       message: "Nome é Campo obrigatório!",
@@ -43,11 +43,13 @@ const UsuarioForm = (props) => {
                       message: "Nome deve ter no mínimo 2 caracteres!",
                     },
                   })}
-                  defaultValue={props.usuario.nome}
+                  defaultValue={props.usuario.nome_usuario}
                   onChange={handleInputChange}
                 />
-                {errors.nome && (
-                  <span style={{ color: "red" }}>{errors.nome.message}</span>
+                {errors.nome_usuario && (
+                  <span style={{ color: "red" }}>
+                    {errors.nome_usuario.message}
+                  </span>
                 )}
               </div>
             </div>
@@ -111,13 +113,17 @@ const UsuarioForm = (props) => {
                 <label htmlFor="id_tipousuario">Tipo Usuario:</label>
                 <Dropdown
                   name="id_tipousuario"
-                  value={props.usuario.id_tipousuario}
+                  value={props.usuario.id_usuario}
                   options={props.tipoUsuarios}
+                  onChange={(handleInputChange) =>
+                    props.setUsuario((usuario) => ({
+                      ...usuario,
+                      id_tipousuario: handleInputChange.value,
+                    }))
+                  }
                   optionLabel="tipo_nome"
                   optionValue="id_tipousuario"
-                  onChange={handleInputChange}
-                  required={true}
-                  placeholder="Selecione um Tipo de Usuario"
+                  placeholder="Selecione um usuario"
                 />
               </div>
             </div>

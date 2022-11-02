@@ -3,16 +3,16 @@ const db = require("../config/database");
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createUsuario = async (req, res) => {
-  const { nome, email, senha, id_tipousuario } = req.body;
+  const { nome_usuario, email, senha, id_tipousuario } = req.body;
   const { rows } = await db.query(
-    "INSERT INTO usuario (nome, email, senha, id_tipoUsuario) VALUES ($1, $2, $3, $4)",
-    [nome, email, senha, id_tipousuario]
+    "INSERT INTO usuario (nome_usuario, email, senha, id_tipoUsuario) VALUES ($1, $2, $3, $4)",
+    [nome_usuario, email, senha, id_tipousuario]
   );
 
   res.status(201).send({
     message: "Usuario adicionado com sucesso!",
     body: {
-      usuario: { nome, email, senha, id_tipousuario },
+      usuario: { nome_usuario, email, senha, id_tipousuario },
     },
   });
 };
@@ -20,7 +20,7 @@ exports.createUsuario = async (req, res) => {
 // ==> Método responsável por listar todos os 'Usuarios':
 exports.listAllUsuario = async (req, res) => {
   const response = await db.query(
-    "SELECT usuario.id_usuario, usuario.nome, usuario.email, usuario.senha,  tipoUsuario.tipo_nome as tipo_nome " +
+    "SELECT usuario.id_usuario, usuario.nome_usuario, usuario.email, usuario.senha,  tipoUsuario.tipo_nome as tipo_nome " +
       "from usuario  inner join tipoUsuario on usuario.id_tipoUsuario = tipoUsuario.id_tipoUsuario"
   );
   res.status(200).send(response.rows);
@@ -30,7 +30,7 @@ exports.listAllUsuario = async (req, res) => {
 exports.findUsuarioById = async (req, res) => {
   const id_usuario = parseInt(req.params.id);
   const response = await db.query(
-    "SELECT usuario.nome, usuario.email, usuario.senha, tipoUsuario.tipo_nome as tipo_nome " +
+    "SELECT usuario.nome_usuario, usuario.email, usuario.senha, tipoUsuario.tipo_nome as tipo_nome " +
       "from usuario inner join tipoUsuario on usuario.id_tipoUsuario = tipoUsuario.id_tipoUsuario where id_usuario = $1",
     [id_usuario]
   );
@@ -51,11 +51,11 @@ exports.updateUsuarioById = async (req, res) => {
   //     message: verificador,
   //   });
   // } else {
-  const { nome, email, senha, id_tipousuario } = req.body;
+  const { nome_usuario, email, senha, id_tipousuario } = req.body;
 
   const response = await db.query(
-    "UPDATE usuario SET nome = $1, email = $2, senha = $3, id_tipoUsuario = $4 WHERE id_usuario = $5",
-    [nome, email, senha, id_tipousuario, id_usuario]
+    "UPDATE usuario SET nome_usuario = $1, email = $2, senha = $3, id_tipoUsuario = $4 WHERE id_usuario = $5",
+    [nome_usuario, email, senha, id_tipousuario, id_usuario]
   );
 
   res.status(200).send({ message: "Usuario atualizado com sucesso!" });

@@ -100,8 +100,8 @@ const VendaList = (props) => {
               sortable
               filter
             ></Column>
-            <Column field="nome" header="Usuario" sortable filter></Column>
-            <Column field="nome" header="Cliente" sortable filter></Column>
+            <Column field="usuario" header="Usuario" sortable filter></Column>
+            <Column field="cliente" header="Cliente" sortable filter></Column>
             <Column header="Operações" body={countryBodyTemplate}></Column>
           </DataTable>
         </div>

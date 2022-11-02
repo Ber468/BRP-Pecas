@@ -1,5 +1,5 @@
 git add .
-git commit -m "Implementacao dos cruds de ItensPedidos e ItensVendas"
+git commit -m "Reajuste nos cruds"
 git push -u origin main
 
 

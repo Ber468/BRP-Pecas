@@ -80,10 +80,14 @@ const PedidoForm = (props) => {
                   name="id_fornecedor"
                   value={props.pedido.id_fornecedor}
                   options={props.fornecedores}
+                  onChange={(handleInputChange) =>
+                    props.setPedido((pedido) => ({
+                      ...pedido,
+                      id_fornecedor: handleInputChange.value,
+                    }))
+                  }
                   optionLabel="nomefantasia"
                   optionValue="id_fornecedor"
-                  onChange={handleInputChange}
-                  required={true}
                   placeholder="Selecione um fornecedor"
                 />
               </div>

@@ -68,11 +68,15 @@ const VendaForm = (props) => {
                 <Dropdown
                   name="id_usuario"
                   value={props.venda.id_usuario}
-                  options={props.usuario}
-                  optionLabel="nome"
+                  options={props.usuarios}
+                  onChange={(handleInputChange) =>
+                    props.setVenda((venda) => ({
+                      ...venda,
+                      id_usuario: handleInputChange.value,
+                    }))
+                  }
+                  optionLabel="nome_usuario"
                   optionValue="id_usuario"
-                  onChange={handleInputChange}
-                  required={true}
                   placeholder="Selecione um Usuario"
                 />
               </div>
@@ -83,11 +87,15 @@ const VendaForm = (props) => {
                 <Dropdown
                   name="id_cliente"
                   value={props.venda.id_cliente}
-                  options={props.cliente}
+                  options={props.clientes}
+                  onChange={(handleInputChange) =>
+                    props.setVenda((venda) => ({
+                      ...venda,
+                      id_cliente: handleInputChange.value,
+                    }))
+                  }
                   optionLabel="nome"
                   optionValue="id_cliente"
-                  onChange={handleInputChange}
-                  required={true}
                   placeholder="Selecione um Cliente"
                 />
               </div>

@@ -58,7 +58,7 @@ function UsuarioCont() {
 
   const initialState = {
     id_usuario: null,
-    nome: "",
+    nome_usuario: "",
     email: "",
     senha: "",
     id_tipousuario: 0,

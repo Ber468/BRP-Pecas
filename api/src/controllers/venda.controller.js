@@ -33,7 +33,7 @@ exports.createVenda = async (req, res) => {
 // ==> Método responsável por listar todas as 'Vendas':
 exports.listAllVenda = async (req, res) => {
   const response = await db.query(
-    "SELECT venda.id_venda, venda.data, venda.valorTotal, usuario.nome as usuario, " +
+    "SELECT venda.id_venda, venda.data, venda.valorTotal, usuario.nome_usuario as usuario, " +
       "cliente.nome as cliente  from venda inner join usuario on venda.id_usuario = usuario.id_usuario " +
       "inner join cliente on venda.id_cliente = cliente.id_cliente"
   );
@@ -44,7 +44,7 @@ exports.listAllVenda = async (req, res) => {
 exports.findVendaById = async (req, res) => {
   const id_venda = parseInt(req.params.id);
   const response = await db.query(
-    "SELECT venda.data, venda.valorTotal, usuario.nome as usuario, cliente.nome as cliente from venda " +
+    "SELECT venda.data, venda.valorTotal, usuario.nome_usuario as usuario, cliente.nome as cliente from venda " +
       "inner join usuario on venda.id_venda = usuario.id_usuario inner join cliente on venda.id_venda = cliente.id_cliente " +
       "WHERE id_venda = $1",
     [id_venda]

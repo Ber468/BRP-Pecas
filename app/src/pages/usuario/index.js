@@ -23,7 +23,7 @@ export default function Usuarios() {
         {usuarios.map((usuario) => (
           <li key={usuario.id_usuario}>
             <b>Nome:</b>
-            {usuario.nome}
+            {usuario.nome_usuario}
             <br />
             <b>Email:</b>
             {usuario.email}

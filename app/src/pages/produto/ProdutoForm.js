@@ -10,12 +10,9 @@ const ProdutoForm = (props) => {
     const { name, value } = event.target;
     props.setProduto({ ...props.produto, [name]: value });
   };
-
-  const [precoVendaMask, setPrecoVendaMask] = useState(
-    props.produto.precoVenda
-  );
+  const [precoVendaMask, setPrecoVendaMask] = useState("10");
   const [quantidadeEstoqueMask, setQuantidadeEstoqueMask] = useState(
-    props.produto.quantidadeEstoque
+    props.produto.quantidadeestoque
   );
 
   const {
@@ -51,7 +48,7 @@ const ProdutoForm = (props) => {
                       message: "Nome deve ter no mínimo 2 caracteres!",
                     },
                   })}
-                  defaultValue={props.usuario.nome}
+                  defaultValue={props.produto.nome}
                   onChange={handleInputChange}
                 />
                 {errors.nome && (
@@ -64,11 +61,11 @@ const ProdutoForm = (props) => {
                 <label htmlFor="precovenda">PrecoVenda</label>
                 <InputMask
                   name="precovenda"
-                  mask="999.999.999.999.999,99"
+                  mask="999.99999"
                   value={precoVendaMask}
                   onChange={(e) => {
                     setPrecoVendaMask(e.value);
-                    props.setCliente({ ...props.produto, precovenda: e.value });
+                    props.setProduto({ ...props.produto, precovenda: e.value });
                   }}
                 />
                 {errors.precovenda && (
@@ -83,11 +80,11 @@ const ProdutoForm = (props) => {
                 <label htmlFor="quantidadeestoque">QuantidadeEstoque</label>
                 <InputMask
                   name="quantidadeestoque"
-                  mask="999.999"
+                  mask="9999"
                   value={quantidadeEstoqueMask}
                   onChange={(e) => {
                     setQuantidadeEstoqueMask(e.value);
-                    props.setCliente({
+                    props.setProduto({
                       ...props.produto,
                       quantidadeestoque: e.value,
                     });
@@ -102,16 +99,20 @@ const ProdutoForm = (props) => {
             </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
-                <label htmlFor="id_tipoproduto">Tipo Usuario:</label>
+                <label htmlFor="id_tipoproduto">Tipo Produto:</label>
                 <Dropdown
                   name="id_tipoproduto"
-                  value={props.produto.id_tipoproduto}
+                  value={props.produto.id_produto}
                   options={props.tipoProdutos}
-                  optionLabel="nome"
+                  onChange={(handleInputChange) =>
+                    props.setProduto((produto) => ({
+                      ...produto,
+                      id_tipoproduto: handleInputChange.value,
+                    }))
+                  }
+                  optionLabel="descricao"
                   optionValue="id_tipoproduto"
-                  onChange={handleInputChange}
-                  required={true}
-                  placeholder="Selecione um Tipo de Produto"
+                  placeholder="Selecione um produto"
                 />
               </div>
             </div>
