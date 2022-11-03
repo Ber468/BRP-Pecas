@@ -1,4 +1,5 @@
 const db = require("../config/database");
+const jwt = require("jsonwebtoken");
 
 // ==> Método responsável por criar um novo 'Product':
 
@@ -69,4 +70,30 @@ exports.deleteUsuarioById = async (req, res) => {
   res
     .status(200)
     .send({ message: "Usuario deletado com sucesso!", id_usuario });
+};
+
+exports.login = async (req, res) => {
+  const { email, senha } = req.body;
+  const response = await db.query(
+    "SELECT email, senha FROM usuario WHERE email = $1 AND senha = $2",
+    [email, senha]
+  );
+  if (!response.rows[0]) {
+    res.status(401).send({ message: "Usuário ou senha inválidos!" });
+  } else {
+    const token = generateAuthToken(email, senha);
+    res.status(200).json({ token });
+  }
+};
+
+const generateAuthToken = function (email, senha) {
+  const token = jwt.sign({ email, senha }, process.env.JWT_PRIV_KEY, {
+    expiresIn: process.env.TOKEN_EXPIRE,
+  });
+
+  return token;
+};
+
+exports.logout = async (req, res) => {
+  res.status(200).send({ auth: false, token: null });
 };

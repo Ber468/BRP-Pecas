@@ -1,5 +1,5 @@
 git add .
-git commit -m "Reajuste nos cruds"
+git commit -m "Implementacao do token"
 git push -u origin main
 
 
