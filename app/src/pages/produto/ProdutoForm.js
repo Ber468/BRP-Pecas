@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
-import { Dropdown } from "primereact/dropdown";
 import { InputMask } from "primereact/inputmask";
+import { AutoComplete } from "primereact/autocomplete";
+import TipoProdutoSrv from "../tipoProduto/TipoProdutoSrv";
 
 const ProdutoForm = (props) => {
+  const { tipoProdutos, setTipoProdutos } = useState([]);
+  const { tipoProdutosFiltradas, setTipoProdutosFiltradas } = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     props.setProduto({ ...props.produto, [name]: value });
   };
-  const [precoVendaMask, setPrecoVendaMask] = useState("10");
+  const [precoVendaMask, setPrecoVendaMask] = useState(
+    props.produto.precovenda
+  );
   const [quantidadeEstoqueMask, setQuantidadeEstoqueMask] = useState(
     props.produto.quantidadeestoque
   );
+
+  useEffect(() => {
+    onClickAtualizarTipoProduto();
+  }, []);
+
+  const onClickAtualizarTipoProduto = () => {
+    TipoProdutoSrv.listar()
+      .then((response) => {
+        setTipoProdutos(response.data);
+      })
+      .catch((e) => {});
+  };
 
   const {
     register,
@@ -22,6 +39,23 @@ const ProdutoForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {};
+  //metodo
+  const buscarTipoProduto = (event) => {
+    setTimeout(() => {
+      let _tipoProdutosFiltradas;
+      if (!event.query.trim().length) {
+        _tipoProdutosFiltradas = [...tipoProdutos];
+      } else {
+        _tipoProdutosFiltradas = tipoProdutos.filter((country) => {
+          return country.tipo_nome
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setTipoProdutosFiltradas(_tipoProdutosFiltradas);
+    }, 250);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,7 +95,7 @@ const ProdutoForm = (props) => {
                 <label htmlFor="precovenda">PrecoVenda</label>
                 <InputMask
                   name="precovenda"
-                  mask="999.99999"
+                  mask="R$ 9.999.999,99"
                   value={precoVendaMask}
                   onChange={(e) => {
                     setPrecoVendaMask(e.value);
@@ -97,7 +131,27 @@ const ProdutoForm = (props) => {
                 )}
               </div>
             </div>
-            <div className="p-fluid grid formgrid">
+            <div
+              className="p-fluid grid formgrid"
+              style={{ marginLeft: "33%" }}
+            >
+              <div className="col-6 md:col-6">
+                <span className="p-float-label">
+                  <AutoComplete
+                    name="id_tipoproduto"
+                    dropdown
+                    value={props.produto.id_tipoproduto}
+                    suggestions={tipoProdutosFiltradas}
+                    completeMethod={buscarTipoProduto}
+                    field="tipo_nome"
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="tipoProduto">TipoProduto</label>
+                </span>
+              </div>
+            </div>
+            <br />
+            {/* <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
                 <label htmlFor="id_tipoproduto">Tipo Produto:</label>
                 <Dropdown
@@ -115,7 +169,7 @@ const ProdutoForm = (props) => {
                   placeholder="Selecione um produto"
                 />
               </div>
-            </div>
+            </div> */}
             <div>
               <Button
                 type="submit"

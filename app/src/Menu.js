@@ -1,98 +1,98 @@
-import React from 'react';
-import { Menubar } from 'primereact/menubar';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Menubar } from "primereact/menubar";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
   let navigate = useNavigate();
   const items = [
     {
-      label: 'Home',
-      icon: 'pi pi-fw pi-home',
+      label: "Home",
+      icon: "pi pi-fw pi-home",
       command: () => {
-         navigate("/home");
+        navigate("/home");
+      },
     },
-  },
     {
-      label: 'Cadastro',
-      icon: 'pi pi-plus',
+      label: "Cadastro",
+      icon: "pi pi-plus",
       items: [
         {
-          label: 'Clientes',
-          icon: 'pi pi-users',
+          label: "Clientes",
+          icon: "pi pi-users",
           command: () => {
             navigate("/cliente");
-        },
-      },
-        {
-          label: 'Fornecedores',
-          icon: 'pi pi-car',
-          command: () => navigate('/fornecedor'),
+          },
         },
         {
-          label: 'Tipo de Usuário',
-          icon: 'pi pi-users',
+          label: "Fornecedores",
+          icon: "pi pi-car",
+          command: () => navigate("/fornecedor"),
+        },
+        {
+          label: "Tipo de Usuário",
+          icon: "pi pi-users",
           command: () => {
             navigate("/TipoUsuario");
+          },
         },
-      },
         {
-          label: 'Tipo de Produto',
-          icon: 'pi pi-shopping-bag',
+          label: "Tipo de Produto",
+          icon: "pi pi-shopping-bag",
           command: () => {
             navigate("/tipoProduto");
+          },
         },
-      },
         {
-          label: 'Produtos',
-          icon: 'pi pi-shopping-bag',
+          label: "Produtos",
+          icon: "pi pi-shopping-bag",
           command: () => {
             navigate("/produto");
+          },
         },
-      },
         {
-          label: 'Usuários',
-          icon: 'pi pi-users',
+          label: "Usuários",
+          icon: "pi pi-users",
           command: () => {
             navigate("/usuario");
+          },
         },
-      },
         {
-          label: 'Pedidos',
-          icon: 'pi pi-credit-card',
+          label: "Pedidos",
+          icon: "pi pi-credit-card",
           command: () => {
             navigate("/pedido");
+          },
         },
-      },
         {
-          label: 'Itens do Pedido',
-          icon: 'pi pi-credit-card',
+          label: "Itens do Pedido",
+          icon: "pi pi-credit-card",
           command: () => {
             navigate("/itemPedido");
+          },
         },
-      },
         {
-          label: 'Vendas',
-          icon: 'pi pi-shopping-cart',
+          label: "Vendas",
+          icon: "pi pi-shopping-cart",
           command: () => {
             navigate("/venda");
+          },
         },
-      },
         {
-          label: 'Itens da Venda',
-          icon: 'pi pi-shopping-cart',
+          label: "Itens da Venda",
+          icon: "pi pi-shopping-cart",
           command: () => {
             navigate("/itemVenda");
+          },
         },
-      },
       ],
     },
     {
-      label: 'Sair',
-      icon: 'pi pi-fw pi-power-off',
+      label: "Sair",
+      icon: "pi pi-fw pi-power-off",
       command: () => {
-        sessionStorage.setItem("token", "");
+        localStorage.setItem("token", "");
       },
-    url: "/",
+      url: "/",
     },
   ];
 
