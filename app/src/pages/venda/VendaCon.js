@@ -81,7 +81,7 @@ function VendaCont() {
   const initialState = {
     id_venda: null,
     data: "",
-    valortotal: 0,
+    valortotal: "",
     id_usuario: 0,
     id_cliente: 0,
   };

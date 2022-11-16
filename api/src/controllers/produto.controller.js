@@ -4,7 +4,7 @@ const isEmpty = require("../validation/isEmpty");
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createProduto = async (req, res) => {
-  const { nome, precoVenda, quantidadeEstoque, id_tipoProduto } = req.body;
+  const { nome, precovenda, quantidadeestoque, id_tipoproduto } = req.body;
   // const verificador = isEmpty([
   //   { nome: "Nome", valor: nome },
   //   { nome: "Preço de Venda", valor: precoVenda },
@@ -17,14 +17,14 @@ exports.createProduto = async (req, res) => {
   //   });
   // } else {
   const { rows } = await db.query(
-    "INSERT INTO produto (nome, precoVenda, quantidadeEstoque, id_tipoProduto) VALUES ($1, $2, $3, $4)",
-    [nome, precoVenda, quantidadeEstoque, id_tipoProduto]
+    "INSERT INTO produto (nome, precovenda, quantidadeestoque, id_tipoproduto) VALUES ($1, $2, $3, $4)",
+    [nome, precovenda, quantidadeestoque, id_tipoproduto]
   );
 
   res.status(201).send({
     message: "Produto adicionado com sucesso!",
     body: {
-      produto: { nome, precoVenda, quantidadeEstoque, id_tipoProduto },
+      produto: { nome, precovenda, quantidadeestoque, id_tipoproduto },
     },
   });
 };
@@ -33,8 +33,8 @@ exports.createProduto = async (req, res) => {
 // ==> Método responsável por listar todos os 'Produtos':
 exports.listAllProduto = async (req, res) => {
   const response = await db.query(
-    "SELECT produto.id_produto, produto.nome, produto.quantidadeEstoque, produto.precoVenda, tipoProduto.descricao " +
-      "as descricao from produto inner join tipoProduto on produto.id_tipoProduto = tipoProduto.id_tipoProduto"
+    "SELECT produto.id_produto, produto.nome, produto.quantidadeestoque, produto.precovenda, tipoProduto.descricao " +
+      "as descricao from produto inner join tipoProduto on produto.id_tipoproduto = tipoProduto.id_tipoproduto"
   );
   res.status(200).send(response.rows);
 };
@@ -64,11 +64,11 @@ exports.updateProdutoById = async (req, res) => {
   //     message: verificador,
   //   });
   // } else {
-  const { nome, precoVenda, quantidadeEstoque, id_tipoProduto } = req.body;
+  const { nome, precovenda, quantidadeestoque, id_tipoproduto } = req.body;
 
   const response = await db.query(
-    "UPDATE produto SET nome = $1, precoVenda = $2, quantidadeEstoque = $3, id_tipoProduto = $4 WHERE id_produto = $5",
-    [nome, precoVenda, quantidadeEstoque, id_tipoProduto, id_produto]
+    "UPDATE produto SET nome = $1, precovenda = $2, quantidadeestoque = $3, id_tipoproduto = $4 WHERE id_produto = $5",
+    [nome, precovenda, quantidadeestoque, id_tipoproduto, id_produto]
   );
 
   res.status(200).send({ message: "Produto atualizado com sucesso!" });

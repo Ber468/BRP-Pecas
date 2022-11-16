@@ -2,6 +2,8 @@ import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
+import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
 
 const template2 = {
   layout:
@@ -44,6 +46,17 @@ const template2 = {
     );
   },
 };
+
+const dateBodyTemplate = (rowData) => {
+  return new Intl.DateTimeFormat("pt-BR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(rowData.data));
+};
+
 const VendaList = (props) => {
   const countryBodyTemplate = (rowData) => {
     return (
@@ -82,6 +95,9 @@ const VendaList = (props) => {
         >
           Inserir
         </button>
+        <button type="button" className="btn btn-light btn-sm">
+          <Link to="/itemVenda">Itens Vendas</Link>
+        </button>
         <div className="card">
           <DataTable
             value={props.vendas}
@@ -93,7 +109,12 @@ const VendaList = (props) => {
             paginatorClassName="justify-content-center"
             className="mt-6"
           >
-            <Column field="data" header="Data" sortable filter></Column>
+            <Column
+              body={dateBodyTemplate}
+              header="Data"
+              sortable
+              filter
+            ></Column>
             <Column
               field="valortotal"
               header="Valor Total"

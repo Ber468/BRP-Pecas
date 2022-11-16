@@ -76,12 +76,7 @@ function ProdutoCont() {
     if (produto.id_produto == null) {
       // inclussão
 
-      ProdutoSrv.incluir({
-        ...produto,
-        precovenda: Number(
-          produto.precovenda.replace(".", "").replace(",", ".")
-        ),
-      })
+      ProdutoSrv.incluir(produto)
         .then((response) => {
           setEditando(false);
           onClickAtualizar();
@@ -101,12 +96,7 @@ function ProdutoCont() {
         });
     } else {
       // alteração
-      ProdutoSrv.alterar({
-        ...produto,
-        precovenda: Number(
-          produto.precovenda.replace(".", "").replace(",", ".")
-        ),
-      })
+      ProdutoSrv.alterar(produto)
         .then((response) => {
           setEditando(false);
           onClickAtualizar();

@@ -2,6 +2,8 @@ import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
+import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
 
 const template2 = {
   layout:
@@ -82,6 +84,9 @@ const ItemVendaList = (props) => {
         >
           Inserir
         </button>
+        <button type="button" className="btn btn-light btn-sm">
+          <Link to="/venda">Voltar</Link>
+        </button>
         <div className="card">
           <DataTable
             value={props.itemVendas}
@@ -94,8 +99,13 @@ const ItemVendaList = (props) => {
             className="mt-6"
           >
             <Column field="valor" header="Valor" sortable filter></Column>
-            <Column field="valortotal" header="Venda" sortable filter></Column>
-            <Column field="nome" header="Produto" sortable filter></Column>
+            <Column field="venda" header="Valor Venda" sortable filter></Column>
+            <Column
+              field="produto"
+              header="Nome Produto"
+              sortable
+              filter
+            ></Column>
             <Column header="Operações" body={countryBodyTemplate}></Column>
           </DataTable>
         </div>

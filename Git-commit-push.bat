@@ -1,5 +1,5 @@
 git add .
-git commit -m "Implementacao de login"
+git commit -m "Ajustes dos cruds"
 git push -u origin main
 
 

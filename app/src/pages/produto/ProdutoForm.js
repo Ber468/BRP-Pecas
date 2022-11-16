@@ -1,37 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
-import { InputMask } from "primereact/inputmask";
-import { AutoComplete } from "primereact/autocomplete";
-import TipoProdutoSrv from "../tipoProduto/TipoProdutoSrv";
+import { Dropdown } from "bootstrap";
 
 const ProdutoForm = (props) => {
-  const { tipoProdutos, setTipoProdutos } = useState([]);
-  const { tipoProdutosFiltradas, setTipoProdutosFiltradas } = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     props.setProduto({ ...props.produto, [name]: value });
   };
-  const [precoVendaMask, setPrecoVendaMask] = useState(
-    props.produto.precovenda
-  );
-  const [quantidadeEstoqueMask, setQuantidadeEstoqueMask] = useState(
-    props.produto.quantidadeestoque
-  );
-
-  useEffect(() => {
-    onClickAtualizarTipoProduto();
-  }, []);
-
-  const onClickAtualizarTipoProduto = () => {
-    TipoProdutoSrv.listar()
-      .then((response) => {
-        setTipoProdutos(response.data);
-      })
-      .catch((e) => {});
-  };
-
   const {
     register,
     handleSubmit,
@@ -39,23 +16,6 @@ const ProdutoForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {};
-  //metodo
-  const buscarTipoProduto = (event) => {
-    setTimeout(() => {
-      let _tipoProdutosFiltradas;
-      if (!event.query.trim().length) {
-        _tipoProdutosFiltradas = [...tipoProdutos];
-      } else {
-        _tipoProdutosFiltradas = tipoProdutos.filter((country) => {
-          return country.tipo_nome
-            .toLowerCase()
-            .startsWith(event.query.toLowerCase());
-        });
-      }
-
-      setTipoProdutosFiltradas(_tipoProdutosFiltradas);
-    }, 250);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,70 +53,29 @@ const ProdutoForm = (props) => {
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="precovenda">PrecoVenda</label>
-                <InputMask
+                <InputText
                   name="precovenda"
-                  mask="R$ 9.999.999,99"
-                  value={precoVendaMask}
-                  onChange={(e) => {
-                    setPrecoVendaMask(e.value);
-                    props.setProduto({ ...props.produto, precovenda: e.value });
-                  }}
+                  defaultValue={props.produto.precovenda}
+                  onChange={handleInputChange}
                 />
-                {errors.precovenda && (
-                  <span style={{ color: "red" }}>
-                    {errors.precovenda.message}
-                  </span>
-                )}
               </div>
             </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="quantidadeestoque">QuantidadeEstoque</label>
-                <InputMask
+                <InputText
                   name="quantidadeestoque"
-                  mask="9999"
-                  value={quantidadeEstoqueMask}
-                  onChange={(e) => {
-                    setQuantidadeEstoqueMask(e.value);
-                    props.setProduto({
-                      ...props.produto,
-                      quantidadeestoque: e.value,
-                    });
-                  }}
+                  defaultValue={props.produto.quantidadeestoque}
+                  onChange={handleInputChange}
                 />
-                {errors.quantidadeestoque && (
-                  <span style={{ color: "red" }}>
-                    {errors.quantidadeestoque.message}
-                  </span>
-                )}
               </div>
             </div>
-            <div
-              className="p-fluid grid formgrid"
-              style={{ marginLeft: "33%" }}
-            >
-              <div className="col-6 md:col-6">
-                <span className="p-float-label">
-                  <AutoComplete
-                    name="id_tipoproduto"
-                    dropdown
-                    value={props.produto.id_tipoproduto}
-                    suggestions={tipoProdutosFiltradas}
-                    completeMethod={buscarTipoProduto}
-                    field="tipo_nome"
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="tipoProduto">TipoProduto</label>
-                </span>
-              </div>
-            </div>
-            <br />
-            {/* <div className="p-fluid grid formgrid">
+            <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
                 <label htmlFor="id_tipoproduto">Tipo Produto:</label>
                 <Dropdown
                   name="id_tipoproduto"
-                  value={props.produto.id_produto}
+                  value={props.produto.id_tipoproduto}
                   options={props.tipoProdutos}
                   onChange={(handleInputChange) =>
                     props.setProduto((produto) => ({
@@ -169,7 +88,7 @@ const ProdutoForm = (props) => {
                   placeholder="Selecione um produto"
                 />
               </div>
-            </div> */}
+            </div>
             <div>
               <Button
                 type="submit"

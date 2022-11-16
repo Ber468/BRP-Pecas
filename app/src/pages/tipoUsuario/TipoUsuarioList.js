@@ -1,69 +1,114 @@
-import React from 'react';
+import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
+import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
 
 const template2 = {
-    layout: 'RowsPerPageDropdown CurrentPageReport PrevPageLink PageLinks NextPageLink',
-    'RowsPerPageDropdown': (options) => {
-        const dropdownOptions = [
-            { label: 5, value: 5 },
-            { label: 10, value: 10 },
-            { label: 15, value: 15 }
-        ];
+  layout:
+    "RowsPerPageDropdown CurrentPageReport PrevPageLink PageLinks NextPageLink",
+  RowsPerPageDropdown: (options) => {
+    const dropdownOptions = [
+      { label: 5, value: 5 },
+      { label: 10, value: 10 },
+      { label: 15, value: 15 },
+    ];
 
-        return (
-            <React.Fragment>
-                <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }}>Linhas por página: </span>
-                <Dropdown value={options.value} options={dropdownOptions} onChange={options.onChange} />
-            </React.Fragment>
-        );
-    },
-    'CurrentPageReport': (options) => {
-        return (
-                <span style={{ color: 'var(--text-color)', userSelect: 'none', width: '120px', textAlign: 'center' }}>
-                    {options.first} - {options.last} de {options.totalRecords}
-                </span>
-        )
-        }
-};   
-        const TipoUsuarioList = (props) => {
-            const countryBodyTemplate = (rowData) => {
-                return (
-                    <React.Fragment>
-                        <button onClick={() => props.editar(rowData.id_tipousuario)} className="btn btn-warning">Editar</button>
-                        <button onClick={() => props.excluir(rowData.id_tipousuario)} className="btn btn-danger">Excluir</button>
-                    </React.Fragment>
-                );
-            }
-            return (
-                <div>
-                    <div>
-                        <h4>Listagem de Tipos Usuários</h4>
-                        <button
-                        button
-                        type="button"
-                        className="btn btn-light btn-sm"
-                        onClick={props.onClickAtualizar}
-                        >
-                        Atualizar
-                        </button>
-                        <button
-                        type="button"
-                        className="btn btn-light btn-sm"
-                        onClick={props.inserir}
-                        >
-                        Inserir
-                        </button>
-                        <div className="card">
-                            <DataTable value={props.tipoUsuarios} responsiveLayout="scroll" selectionMode="single" paginator paginatorTemplate={template2} rows={5}
-                                paginatorClassName="justify-content-center" className="mt-6">
-                                    <Column field="tipo_nome" header="Tipo Nome" sortable filter></Column>
-                                    <Column header="Operações" body={countryBodyTemplate}></Column>
-                                </DataTable>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-    export default TipoUsuarioList;
+    return (
+      <React.Fragment>
+        <span
+          className="mx-1"
+          style={{ color: "var(--text-color)", userSelect: "none" }}
+        >
+          Linhas por página:{" "}
+        </span>
+        <Dropdown
+          value={options.value}
+          options={dropdownOptions}
+          onChange={options.onChange}
+        />
+      </React.Fragment>
+    );
+  },
+  CurrentPageReport: (options) => {
+    return (
+      <span
+        style={{
+          color: "var(--text-color)",
+          userSelect: "none",
+          width: "120px",
+          textAlign: "center",
+        }}
+      >
+        {options.first} - {options.last} de {options.totalRecords}
+      </span>
+    );
+  },
+};
+const TipoUsuarioList = (props) => {
+  const countryBodyTemplate = (rowData) => {
+    return (
+      <React.Fragment>
+        <button
+          onClick={() => props.editar(rowData.id_tipousuario)}
+          className="btn btn-warning"
+        >
+          Editar
+        </button>
+        <button
+          onClick={() => props.excluir(rowData.id_tipousuario)}
+          className="btn btn-danger"
+        >
+          Excluir
+        </button>
+      </React.Fragment>
+    );
+  };
+  return (
+    <div>
+      <div>
+        <h4>Listagem de Tipos Usuários</h4>
+        <button
+          button
+          type="button"
+          className="btn btn-light btn-sm"
+          onClick={props.onClickAtualizar}
+        >
+          Atualizar
+        </button>
+        <button
+          type="button"
+          className="btn btn-light btn-sm"
+          onClick={props.inserir}
+        >
+          Inserir
+        </button>
+        <button type="button" className="btn btn-light btn-sm">
+          <Link to="/usuario">Voltar</Link>
+        </button>
+        <div className="card">
+          <DataTable
+            value={props.tipoUsuarios}
+            responsiveLayout="scroll"
+            selectionMode="single"
+            paginator
+            paginatorTemplate={template2}
+            rows={5}
+            paginatorClassName="justify-content-center"
+            className="mt-6"
+          >
+            <Column
+              field="tipo_nome"
+              header="Tipo Nome"
+              sortable
+              filter
+            ></Column>
+            <Column header="Operações" body={countryBodyTemplate}></Column>
+          </DataTable>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default TipoUsuarioList;

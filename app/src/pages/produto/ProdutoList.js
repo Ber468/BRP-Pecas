@@ -2,6 +2,7 @@ import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
+import { Link } from "react-router-dom";
 
 const template2 = {
   layout:
@@ -81,6 +82,9 @@ const ProdutoList = (props) => {
           onClick={props.inserir}
         >
           Inserir
+        </button>
+        <button type="button" className="btn btn-light btn-sm">
+          <Link to="/tipoProduto">Tipo Produto</Link>
         </button>
         <div className="card">
           <DataTable

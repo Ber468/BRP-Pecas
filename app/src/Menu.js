@@ -29,20 +29,6 @@ function Menu() {
           command: () => navigate("/fornecedor"),
         },
         {
-          label: "Tipo de Usuário",
-          icon: "pi pi-users",
-          command: () => {
-            navigate("/TipoUsuario");
-          },
-        },
-        {
-          label: "Tipo de Produto",
-          icon: "pi pi-shopping-bag",
-          command: () => {
-            navigate("/tipoProduto");
-          },
-        },
-        {
           label: "Produtos",
           icon: "pi pi-shopping-bag",
           command: () => {
@@ -64,24 +50,10 @@ function Menu() {
           },
         },
         {
-          label: "Itens do Pedido",
-          icon: "pi pi-credit-card",
-          command: () => {
-            navigate("/itemPedido");
-          },
-        },
-        {
           label: "Vendas",
           icon: "pi pi-shopping-cart",
           command: () => {
             navigate("/venda");
-          },
-        },
-        {
-          label: "Itens da Venda",
-          icon: "pi pi-shopping-cart",
-          command: () => {
-            navigate("/itemVenda");
           },
         },
       ],

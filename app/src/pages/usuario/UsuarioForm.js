@@ -113,7 +113,7 @@ const UsuarioForm = (props) => {
                 <label htmlFor="id_tipousuario">Tipo Usuario:</label>
                 <Dropdown
                   name="id_tipousuario"
-                  value={props.usuario.id_usuario}
+                  value={props.usuario.id_tipousuario}
                   options={props.tipoUsuarios}
                   onChange={(handleInputChange) =>
                     props.setUsuario((usuario) => ({

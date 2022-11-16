@@ -4,7 +4,7 @@ const isEmpty = require("../validation/isEmpty");
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createVenda = async (req, res) => {
-  const { data, valorTotal, id_usuario, id_cliente } = req.body;
+  const { data, valortotal, id_usuario, id_cliente } = req.body;
   // const verificador = isEmpty([
   //   { data: "Data", valor: data },
   //   { data: "Valor Total", valor: valorTotal },
@@ -17,14 +17,14 @@ exports.createVenda = async (req, res) => {
   //   });
   // } else {
   const { rows } = await db.query(
-    "INSERT INTO venda (data, valorTotal, id_usuario, id_cliente) VALUES ($1, $2, $3, $4)",
-    [data, valorTotal, id_usuario, id_cliente]
+    "INSERT INTO venda (data, valortotal, id_usuario, id_cliente) VALUES ($1, $2, $3, $4)",
+    [data, valortotal, id_usuario, id_cliente]
   );
 
   res.status(201).send({
     message: "Venda adicionado com sucesso!",
     body: {
-      venda: { data, valorTotal, id_usuario, id_cliente },
+      venda: { data, valortotal, id_usuario, id_cliente },
     },
   });
 };

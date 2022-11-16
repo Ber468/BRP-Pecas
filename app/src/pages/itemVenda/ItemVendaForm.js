@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
 import { InputMask } from "primereact/inputmask";
+import { InputText } from "primereact/inputtext";
 
 const ItemVendaForm = (props) => {
   const handleInputChange = (event) => {
@@ -10,7 +11,7 @@ const ItemVendaForm = (props) => {
     props.setItemVenda({ ...props.itemvenda, [name]: value });
   };
 
-  const [valorMask, setValorMask] = useState(props.itemvenda.data);
+  // const [valorMask, setValorMask] = useState(props.itemvenda.data);
 
   const {
     handleSubmit,
@@ -28,21 +29,11 @@ const ItemVendaForm = (props) => {
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="valor">Valor</label>
-                <InputMask
+                <InputText
                   name="valor"
-                  mask="999.999.999.999.999,99"
-                  value={valorMask}
-                  onChange={(e) => {
-                    setValorMask(e.value);
-                    props.setItemVenda({
-                      ...props.itemvenda,
-                      valor: e.value,
-                    });
-                  }}
+                  defaultValue={props.itemVenda.valor}
+                  onChange={handleInputChange}
                 />
-                {errors.valor && (
-                  <span style={{ color: "red" }}>{errors.valor.message}</span>
-                )}
               </div>
             </div>
             <div className="p-fluid grid formgrid">

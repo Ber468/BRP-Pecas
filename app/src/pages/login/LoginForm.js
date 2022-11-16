@@ -62,7 +62,9 @@ const LoginForm = (props) => {
             value={credenciais.ususenha}
             onChange={handleInputChange}
           />
-          <button type="submit" label="Entrar" className="button"></button>
+          <button type="submit" className="button">
+            Entrar
+          </button>
         </div>
         <div className="side">
           <img src={logo} className="img" alt="logo" />{" "}

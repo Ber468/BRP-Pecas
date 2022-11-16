@@ -81,8 +81,8 @@ function ItemVendaCont() {
   const initialState = {
     id_itemvenda: null,
     valor: 0,
-    id_Venda: 0,
-    id_produto: 0,
+    id_venda: 0,
+    id_produto: "",
   };
 
   const [itemvenda, setItemVenda] = useState(initialState);
