@@ -99,9 +99,9 @@ const ItemVendaList = (props) => {
             className="mt-6"
           >
             <Column field="valor" header="Valor" sortable filter></Column>
-            <Column field="venda" header="Valor Venda" sortable filter></Column>
+            <Column field="valortotal" header="Valor Venda" sortable filter></Column>
             <Column
-              field="produto"
+              field="nome"
               header="Nome Produto"
               sortable
               filter

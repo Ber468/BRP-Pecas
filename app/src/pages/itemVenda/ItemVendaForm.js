@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
-import { InputMask } from "primereact/inputmask";
 import { InputText } from "primereact/inputtext";
 
 const ItemVendaForm = (props) => {
@@ -10,8 +9,6 @@ const ItemVendaForm = (props) => {
     const { name, value } = event.target;
     props.setItemVenda({ ...props.itemvenda, [name]: value });
   };
-
-  // const [valorMask, setValorMask] = useState(props.itemvenda.data);
 
   const {
     handleSubmit,
@@ -31,23 +28,27 @@ const ItemVendaForm = (props) => {
                 <label htmlFor="valor">Valor</label>
                 <InputText
                   name="valor"
-                  defaultValue={props.itemVenda.valor}
+                  value={props.itemvenda.valor}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
-                <label htmlFor="id_venda">Venda:</label>
+                <label htmlFor="id_venda">Valor Total Venda:</label>
                 <Dropdown
                   name="id_venda"
                   value={props.itemvenda.id_venda}
-                  options={props.venda}
-                  optionLabel="valorTotal"
+                  options={props.vendas}
+                  onChange={(handleInputChange) =>
+                    props.setItemVenda((itemvenda) => ({
+                      ...itemvenda,
+                      id_venda: handleInputChange.value,
+                    }))
+                  }
+                  optionLabel="valortotal"
                   optionValue="id_venda"
-                  onChange={handleInputChange}
-                  required={true}
-                  placeholder="Selecione uma Venda"
+                  placeholder="Selecione o valor total da venda"
                 />
               </div>
             </div>
@@ -56,13 +57,17 @@ const ItemVendaForm = (props) => {
                 <label htmlFor="id_produto">Produto:</label>
                 <Dropdown
                   name="id_produto"
-                  value={props.itempedido.id_produto}
-                  options={props.produto}
+                  value={props.itemvenda.id_produto}
+                  options={props.produtos}
+                  onChange={(handleInputChange) =>
+                    props.setItemVenda((itemvenda) => ({
+                      ...itemvenda,
+                      id_produto: handleInputChange.value,
+                    }))
+                  }
                   optionLabel="nome"
                   optionValue="id_produto"
-                  onChange={handleInputChange}
-                  required={true}
-                  placeholder="Selecione um Produto"
+                  placeholder="Selecione um produto"
                 />
               </div>
             </div>

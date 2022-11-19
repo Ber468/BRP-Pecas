@@ -82,7 +82,7 @@ function ItemVendaCont() {
     id_itemvenda: null,
     valor: 0,
     id_venda: 0,
-    id_produto: "",
+    id_produto: 0,
   };
 
   const [itemvenda, setItemVenda] = useState(initialState);

@@ -1,5 +1,5 @@
 git add .
-git commit -m "Ajustes dos cruds"
+git commit -m "Revisao dos cruds"
 git push -u origin main
 
 

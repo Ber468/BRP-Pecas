@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
 import { InputMask } from "primereact/inputmask";
+import { InputText } from "primereact/inputtext";
 
 const VendaForm = (props) => {
   const handleInputChange = (event) => {
@@ -11,7 +12,6 @@ const VendaForm = (props) => {
   };
 
   const [dataMask, setDataMask] = useState(props.venda.data);
-  const [valorTotalMask, setValorTotalMask] = useState(props.venda.valortotal);
 
   const {
     handleSubmit,
@@ -46,22 +46,13 @@ const VendaForm = (props) => {
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="valortotal">Valor Total</label>
-                <InputMask
-                  name="valortotal"
-                  mask="999.999.999.999.999,99"
-                  value={valorTotalMask}
-                  onChange={(e) => {
-                    setValorTotalMask(e.value);
-                    props.setVenda({ ...props.venda, valortotal: e.value });
-                  }}
-                />
-                {errors.valortotal && (
-                  <span style={{ color: "red" }}>
-                    {errors.valortotal.message}
-                  </span>
-                )}
-              </div>
-            </div>
+                    <InputText
+                      name="valortotal"
+                      defaultValue={props.venda.valortotal}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
                 <label htmlFor="id_usuario">Usuario:</label>
