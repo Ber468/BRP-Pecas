@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
-import { InputMask } from "primereact/inputmask";
+import { InputText } from "primereact/inputtext";
 
 const ItemPedidoForm = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    props.setItemPedido({ ...props.itempedido, [name]: value });
+    props.setItemPedido({ ...props.itemPedido, [name]: value });
   };
-
-  const [quantidadeMask, setQuantidadeMask] = useState(props.itempedido.data);
 
   const {
     handleSubmit,
@@ -24,40 +22,32 @@ const ItemPedidoForm = (props) => {
       <div style={{ padding: 20 }}>
         <div className="card">
           <h5>Cadastro de Itens Pedidos</h5>
-          <div style={{ marginLeft: "33em" }}>
-            <div className="p-fluid grid formgrid">
+          <div style={{marginLeft:"40%"}}>
+          <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="quantidade">Quantidade</label>
-                <InputMask
-                  name="quantidade"
-                  mask="999.999"
-                  value={quantidadeMask}
-                  onChange={(e) => {
-                    setQuantidadeMask(e.value);
-                    props.setItemPedido({
-                      ...props.itempedido,
-                      quantidade: e.value,
-                    });
-                  }}
-                />
-                {errors.quantidade && (
-                  <span style={{ color: "red" }}>
-                    {errors.quantidade.message}
-                  </span>
-                )}
-              </div>
-            </div>
+                    <InputText
+                      name="quantidade"
+                      value={props.itemPedido.quantidade}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
                 <label htmlFor="id_pedido">Pedido:</label>
                 <Dropdown
                   name="id_pedido"
-                  value={props.itempedido.id_pedido}
-                  options={props.pedido}
+                  value={props.itemPedido.id_pedido}
+                  options={props.pedidos}
+                  onChange={(handleInputChange) =>
+                    props.setItemPedido((itemPedido) => ({
+                      ...itemPedido,
+                      id_itempedido: handleInputChange.value,
+                    }))
+                  }
                   optionLabel="descricao"
                   optionValue="id_pedido"
-                  onChange={handleInputChange}
-                  required={true}
                   placeholder="Selecione um Pedido"
                 />
               </div>
@@ -67,12 +57,16 @@ const ItemPedidoForm = (props) => {
                 <label htmlFor="id_produto">Produto:</label>
                 <Dropdown
                   name="id_produto"
-                  value={props.itempedido.id_produto}
-                  options={props.produto}
+                  value={props.itemPedido.id_produto}
+                  options={props.produtos}
+                  onChange={(handleInputChange) =>
+                    props.setItemPedido((itemPedido) => ({
+                      ...itemPedido,
+                      id_itempedido: handleInputChange.value,
+                    }))
+                  }
                   optionLabel="nome"
                   optionValue="id_produto"
-                  onChange={handleInputChange}
-                  required={true}
                   placeholder="Selecione um Produto"
                 />
               </div>

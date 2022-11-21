@@ -26,7 +26,7 @@ const PedidoForm = (props) => {
       <div style={{ padding: 20 }}>
         <div className="card">
           <h5>Cadastro de Pedidos</h5>
-          <div style={{ marginLeft: "33em" }}>
+          <div style={{marginLeft:"40%"}}>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="descricao">Descricao</label>

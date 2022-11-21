@@ -3,7 +3,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Link } from "react-router-dom";
-import { Button } from "primereact/button";
 
 const template2 = {
   layout:
@@ -52,8 +51,6 @@ const dateBodyTemplate = (rowData) => {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
   }).format(new Date(rowData.data));
 };
 
@@ -81,7 +78,7 @@ const VendaList = (props) => {
       <div>
         <h4>Listagem de Vendas</h4>
         <button
-          button
+          button style={{margin: '8px'}}
           type="button"
           className="btn btn-light btn-sm"
           onClick={props.onClickAtualizar}
@@ -95,7 +92,7 @@ const VendaList = (props) => {
         >
           Inserir
         </button>
-        <button type="button" className="btn btn-light btn-sm">
+        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
           <Link to="/itemVenda">Itens Vendas</Link>
         </button>
         <div className="card">

@@ -85,7 +85,7 @@ function ItemPedidoCont() {
     id_produto: 0,
   };
 
-  const [itempedido, setItemPedido] = useState(initialState);
+  const [itemPedido, setItemPedido] = useState(initialState);
   const [editando, setEditando] = useState(false);
 
   const inserir = () => {
@@ -94,10 +94,10 @@ function ItemPedidoCont() {
   };
 
   const salvar = () => {
-    if (itempedido.id_itempedido == null) {
+    if (itemPedido.id_itempedido == null) {
       // inclussão
 
-      ItemPedidoSrv.incluir(itempedido)
+      ItemPedidoSrv.incluir(itemPedido)
         .then((response) => {
           setEditando(false);
           onClickAtualizar();
@@ -117,7 +117,7 @@ function ItemPedidoCont() {
         });
     } else {
       // alteração
-      ItemPedidoSrv.alterar(itempedido)
+      ItemPedidoSrv.alterar(itemPedido)
         .then((response) => {
           setEditando(false);
           onClickAtualizar();
@@ -201,7 +201,7 @@ function ItemPedidoCont() {
     return (
       <div className="App">
         <ItemPedidoForm
-          itemPedidos={itemPedidos}
+          itemPedido={itemPedido}
           setItemPedido={setItemPedido}
           pedidos={pedidos}
           produtos={produtos}

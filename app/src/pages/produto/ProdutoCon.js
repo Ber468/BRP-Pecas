@@ -59,7 +59,7 @@ function ProdutoCont() {
   const initialState = {
     id_produto: null,
     nome: "",
-    precovenda: 0,
+    precovenda: "",
     quantidadeestoque: 0,
     id_tipoproduto: 0,
   };

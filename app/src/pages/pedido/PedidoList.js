@@ -46,6 +46,15 @@ const template2 = {
     );
   },
 };
+
+const dateBodyTemplate = (rowData) => {
+  return new Intl.DateTimeFormat("pt-BR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date(rowData.data));
+};
+
 const PedidoList = (props) => {
   const countryBodyTemplate = (rowData) => {
     return (
@@ -70,7 +79,7 @@ const PedidoList = (props) => {
       <div>
         <h4>Listagem de Pedidos</h4>
         <button
-          button
+          button style={{margin: '8px'}}
           type="button"
           className="btn btn-light btn-sm"
           onClick={props.onClickAtualizar}
@@ -84,7 +93,7 @@ const PedidoList = (props) => {
         >
           Inserir
         </button>
-        <button type="button" className="btn btn-light btn-sm">
+        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
           <Link to="/itemPedido">Itens Pedidos</Link>
         </button>
         <div className="card">
@@ -104,7 +113,7 @@ const PedidoList = (props) => {
               sortable
               filter
             ></Column>
-            <Column field="data" header="Data" sortable filter></Column>
+            <Column body={dateBodyTemplate} header="Data" sortable filter></Column>
             <Column
               field="nomefantasia"
               header="Fornecedor"

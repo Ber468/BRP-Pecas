@@ -3,7 +3,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Link } from "react-router-dom";
-import { Button } from "primereact/button";
 
 const template2 = {
   layout:
@@ -70,7 +69,7 @@ const UsuarioList = (props) => {
       <div>
         <h4>Listagem de Usuários</h4>
         <button
-          button
+          button style={{margin: '8px'}}
           type="button"
           className="btn btn-light btn-sm"
           onClick={props.onClickAtualizar}
@@ -84,7 +83,7 @@ const UsuarioList = (props) => {
         >
           Inserir
         </button>
-        <button type="button" className="btn btn-light btn-sm">
+        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
           <Link to="/tipoUsuario">Tipo Usuario</Link>
         </button>
         <div className="card">

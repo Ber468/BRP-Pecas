@@ -85,7 +85,7 @@ function ItemVendaCont() {
     id_produto: 0,
   };
 
-  const [itemvenda, setItemVenda] = useState(initialState);
+  const [itemVenda, setItemVenda] = useState(initialState);
   const [editando, setEditando] = useState(false);
 
   const inserir = () => {
@@ -94,10 +94,10 @@ function ItemVendaCont() {
   };
 
   const salvar = () => {
-    if (itemvenda.id_itemvenda == null) {
+    if (itemVenda.id_itemvenda == null) {
       // inclussão
 
-      ItemVendaSrv.incluir(itemvenda)
+      ItemVendaSrv.incluir(itemVenda)
         .then((response) => {
           setEditando(false);
           onClickAtualizar();
@@ -117,7 +117,7 @@ function ItemVendaCont() {
         });
     } else {
       // alteração
-      ItemVendaSrv.alterar(itemvenda)
+      ItemVendaSrv.alterar(itemVenda)
         .then((response) => {
           setEditando(false);
           onClickAtualizar();
@@ -145,7 +145,7 @@ function ItemVendaCont() {
   const editar = (id_itemvenda) => {
     setItemVenda(
       itemVendas.filter(
-        (itemvenda) => itemvenda.id_itemvenda === id_itemvenda
+        (itemVenda) => itemVenda.id_itemvenda === id_itemvenda
       )[0]
     );
     setEditando(true);
@@ -201,7 +201,7 @@ function ItemVendaCont() {
     return (
       <div className="App">
         <ItemVendaForm
-          itemVendas={itemVendas}
+          itemVenda={itemVenda}
           setItemVenda={setItemVenda}
           vendas={vendas}
           produtos={produtos}

@@ -69,7 +69,7 @@ const ProdutoList = (props) => {
       <div>
         <h4>Listagem de Produtos</h4>
         <button
-          button
+          button style={{margin: '8px'}}
           type="button"
           className="btn btn-light btn-sm"
           onClick={props.onClickAtualizar}
@@ -83,7 +83,7 @@ const ProdutoList = (props) => {
         >
           Inserir
         </button>
-        <button type="button" className="btn btn-light btn-sm">
+        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
           <Link to="/tipoProduto">Tipo Produto</Link>
         </button>
         <div className="card">

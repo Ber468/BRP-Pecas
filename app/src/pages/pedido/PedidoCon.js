@@ -176,7 +176,7 @@ function PedidoCont() {
       <div className="App">
         <PedidoForm
           pedido={pedido}
-          setUsuario={setPedido}
+          setPedido={setPedido}
           fornecedores={fornecedores}
           salvar={salvar}
           cancelar={cancelar}

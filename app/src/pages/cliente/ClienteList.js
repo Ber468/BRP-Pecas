@@ -40,15 +40,15 @@ const template2 = {
                 <div>
                     <div>
                         <h4>Listagem de Clientes</h4>
-                        <button
-                        button
+                        <button 
+                        button style={{margin: '8px'}}
                         type="button"
                         className="btn btn-light btn-sm"
                         onClick={props.onClickAtualizar}
                         >
                         Atualizar
                         </button>
-                        <button
+                        <button 
                         type="button"
                         className="btn btn-light btn-sm"
                         onClick={props.inserir}

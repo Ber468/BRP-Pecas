@@ -7,7 +7,7 @@ import { InputText } from "primereact/inputtext";
 const ItemVendaForm = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    props.setItemVenda({ ...props.itemvenda, [name]: value });
+    props.setItemVenda({ ...props.itemVenda, [name]: value });
   };
 
   const {
@@ -22,13 +22,13 @@ const ItemVendaForm = (props) => {
       <div style={{ padding: 20 }}>
         <div className="card">
           <h5>Cadastro de Itens Vendas</h5>
-          <div style={{ marginLeft: "33em" }}>
+          <div style={{marginLeft:"40%"}}>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="valor">Valor</label>
                 <InputText
                   name="valor"
-                  value={props.itemvenda.valor}
+                  value={props.itemVenda.valor}
                   onChange={handleInputChange}
                 />
               </div>
@@ -38,11 +38,11 @@ const ItemVendaForm = (props) => {
                 <label htmlFor="id_venda">Valor Total Venda:</label>
                 <Dropdown
                   name="id_venda"
-                  value={props.itemvenda.id_venda}
+                  value={props.itemVenda.id_venda}
                   options={props.vendas}
                   onChange={(handleInputChange) =>
-                    props.setItemVenda((itemvenda) => ({
-                      ...itemvenda,
+                    props.setItemVenda((itemVenda) => ({
+                      ...itemVenda,
                       id_venda: handleInputChange.value,
                     }))
                   }
@@ -57,11 +57,11 @@ const ItemVendaForm = (props) => {
                 <label htmlFor="id_produto">Produto:</label>
                 <Dropdown
                   name="id_produto"
-                  value={props.itemvenda.id_produto}
+                  value={props.itemVenda.id_produto}
                   options={props.produtos}
                   onChange={(handleInputChange) =>
-                    props.setItemVenda((itemvenda) => ({
-                      ...itemvenda,
+                    props.setItemVenda((itemVenda) => ({
+                      ...itemVenda,
                       id_produto: handleInputChange.value,
                     }))
                   }

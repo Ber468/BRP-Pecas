@@ -70,7 +70,7 @@ const TipoUsuarioList = (props) => {
       <div>
         <h4>Listagem de Tipos Usuários</h4>
         <button
-          button
+          button style={{margin: '8px'}}
           type="button"
           className="btn btn-light btn-sm"
           onClick={props.onClickAtualizar}
@@ -84,7 +84,7 @@ const TipoUsuarioList = (props) => {
         >
           Inserir
         </button>
-        <button type="button" className="btn btn-light btn-sm">
+        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
           <Link to="/usuario">Voltar</Link>
         </button>
         <div className="card">

@@ -70,7 +70,7 @@ const ItemVendaList = (props) => {
       <div>
         <h4>Listagem de Itens Vendas</h4>
         <button
-          button
+          button style={{margin: '8px'}}
           type="button"
           className="btn btn-light btn-sm"
           onClick={props.onClickAtualizar}
@@ -84,7 +84,7 @@ const ItemVendaList = (props) => {
         >
           Inserir
         </button>
-        <button type="button" className="btn btn-light btn-sm">
+        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
           <Link to="/venda">Voltar</Link>
         </button>
         <div className="card">
@@ -99,9 +99,9 @@ const ItemVendaList = (props) => {
             className="mt-6"
           >
             <Column field="valor" header="Valor" sortable filter></Column>
-            <Column field="valortotal" header="Valor Venda" sortable filter></Column>
+            <Column field="venda" header="Valor Venda" sortable filter></Column>
             <Column
-              field="nome"
+              field="produto"
               header="Nome Produto"
               sortable
               filter
