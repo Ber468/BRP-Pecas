@@ -67,7 +67,7 @@ const ItemPedidoList = (props) => {
   return (
     <div>
       <div>
-        <h4>Listagem de Itens Pedidos</h4>
+        <h4 style={{marginTop:"2%"}}>Listagem de Itens Pedidos</h4>
         <button
           button style={{margin: '8px'}}
           type="button"
@@ -84,7 +84,7 @@ const ItemPedidoList = (props) => {
           Inserir
         </button>
         <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
-          <Link to="/pedido">Voltar</Link>
+          <Link to="/pedido" style={{textDecoration: "none", color: "black"}}>Voltar</Link>
         </button>
         <div className="card">
           <DataTable

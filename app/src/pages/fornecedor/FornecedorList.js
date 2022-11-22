@@ -66,7 +66,7 @@ const FornecedorList = (props) => {
   return (
     <div>
       <div>
-        <h4>Listagem de Fornecedores</h4>
+        <h4 style={{marginTop:"2%"}}>Listagem de Fornecedores</h4>
         <button
           button style={{margin: '8px'}}
           type="button"

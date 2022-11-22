@@ -145,7 +145,7 @@ function ItemPedidoCont() {
   const editar = (id_itempedido) => {
     setItemPedido(
       itemPedidos.filter(
-        (itempedido) => itempedido.id_itempedido === id_itempedido
+        (itemPedido) => itemPedido.id_itempedido === id_itempedido
       )[0]
     );
     setEditando(true);

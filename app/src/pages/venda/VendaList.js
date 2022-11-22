@@ -3,6 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Link } from "react-router-dom";
+import vendaPDF from "../relatorios/venda/venda";
 
 const template2 = {
   layout:
@@ -76,7 +77,7 @@ const VendaList = (props) => {
   return (
     <div>
       <div>
-        <h4>Listagem de Vendas</h4>
+        <h4 style={{marginTop:"2%"}}>Listagem de Vendas</h4>
         <button
           button style={{margin: '8px'}}
           type="button"
@@ -93,7 +94,15 @@ const VendaList = (props) => {
           Inserir
         </button>
         <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
-          <Link to="/itemVenda">Itens Vendas</Link>
+          <Link to="/itemVenda" style={{textDecoration: "none", color: "black"}}>Itens Vendas</Link>
+        </button>
+        <button 
+        style={{margin: '8px'}} 
+        type="button" 
+        className="btn btn-light btn-sm"
+        onClick={(e) => vendaPDF(props.vendas)}
+        >
+          Gerar PDF
         </button>
         <div className="card">
           <DataTable

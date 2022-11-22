@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
-import { InputMask } from "primereact/inputmask";
 import { InputText } from "primereact/inputtext";
+import { Calendar } from "primereact/calendar";
 
 const VendaForm = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     props.setVenda({ ...props.venda, [name]: value });
   };
-
-  const [dataMask, setDataMask] = useState(props.venda.data);
 
   const {
     handleSubmit,
@@ -29,14 +27,12 @@ const VendaForm = (props) => {
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
                 <label htmlFor="data">Data</label>
-                <InputMask
+                <Calendar
                   name="data"
-                  mask="99/99/9999"
-                  value={dataMask}
-                  onChange={(e) => {
-                    setDataMask(e.value);
-                    props.setVenda({ ...props.venda, data: e.value });
-                  }}
+                  showIcon
+                  dateFormat="dd/mm/yy"
+                  defaultValue={props.venda.data}
+                  onChange={handleInputChange}
                 />
                 {errors.data && (
                   <span style={{ color: "red" }}>{errors.data.message}</span>

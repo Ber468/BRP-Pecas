@@ -3,7 +3,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Link } from "react-router-dom";
-import { Button } from "primereact/button";
 
 const template2 = {
   layout:
@@ -68,7 +67,7 @@ const ItemVendaList = (props) => {
   return (
     <div>
       <div>
-        <h4>Listagem de Itens Vendas</h4>
+        <h4 style={{marginTop:"2%"}}>Listagem de Itens Vendas</h4>
         <button
           button style={{margin: '8px'}}
           type="button"
@@ -85,7 +84,7 @@ const ItemVendaList = (props) => {
           Inserir
         </button>
         <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
-          <Link to="/venda">Voltar</Link>
+          <Link to="/venda" style={{textDecoration: "none", color: "black"}}>Voltar</Link>
         </button>
         <div className="card">
           <DataTable
