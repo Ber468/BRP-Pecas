@@ -103,8 +103,8 @@ const ItemPedidoList = (props) => {
               sortable
               filter
             ></Column>
-            <Column field="descricao" header="Pedido" sortable filter></Column>
-            <Column field="nome" header="Produto" sortable filter></Column>
+            <Column field="pedido" header="Pedido" sortable filter></Column>
+            <Column field="produto" header="Produto" sortable filter></Column>
             <Column header="Operações" body={countryBodyTemplate}></Column>
           </DataTable>
         </div>

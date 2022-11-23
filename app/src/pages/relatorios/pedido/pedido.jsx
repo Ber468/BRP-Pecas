@@ -3,6 +3,14 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 function pedidoPDF(pedidos){
     pdfMaker.vfs = pdfFonts.pdfMake.vfs;
 
+    const formateDate = (date) => {
+        return new Intl.DateTimeFormat("pt--BR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        }).format(new Date(date.data));
+    };
+
     const relatorioTitulo = [
         {
             text: 'Relatório sobre todos pedidos',

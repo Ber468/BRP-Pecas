@@ -5,16 +5,16 @@ const isEmpty = require("../validation/isEmpty");
 
 exports.createPedido = async (req, res) => {
   const { descricao, data, id_fornecedor } = req.body;
-  // const verificador = isEmpty([
-  //   { nome: "Descrição", valor: descricao },
-  //   { nome: "Data", valor: data },
-  //   { nome: "Id do Fornecedor", valor: id_fornecedor },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
+  const verificador = isEmpty([
+    { nome: "Descrição", valor: descricao },
+    { nome: "Data", valor: data },
+    { nome: "Id do Fornecedor", valor: id_fornecedor },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO pedido (descricao, data, id_fornecedor) VALUES ($1, $2, $3)",
     [descricao, data, id_fornecedor]
@@ -27,7 +27,7 @@ exports.createPedido = async (req, res) => {
     },
   });
 };
-// };
+};
 
 // ==> Método responsável por listar todos os 'Pedidos':
 exports.listAllPedido = async (req, res) => {
@@ -52,17 +52,17 @@ exports.findPedidoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Pedido' pelo 'Id':
 exports.updatePedidoById = async (req, res) => {
   const id_pedido = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { nome: "Descrição", valor: descricao },
-  //   { nome: "Data", valor: data },
-  //   { nome: "Id do Fornecedor", valor: id_fornecedor },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { descricao, data, id_fornecedor } = req.body;
+  const verificador = isEmpty([
+    { nome: "Descrição", valor: descricao },
+    { nome: "Data", valor: data },
+    { nome: "Id do Fornecedor", valor: id_fornecedor },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE pedido SET descricao = $1, data = $2, id_fornecedor = $3 WHERE id_pedido = $4",
@@ -71,7 +71,7 @@ exports.updatePedidoById = async (req, res) => {
 
   res.status(200).send({ message: "Pedido atualizado com sucesso!" });
 };
-// };
+};
 
 // ==> Método responsável por excluir uma 'Pedido' pelo 'Id':
 exports.deletePedidoById = async (req, res) => {

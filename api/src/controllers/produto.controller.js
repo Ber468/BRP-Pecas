@@ -5,17 +5,17 @@ const isEmpty = require("../validation/isEmpty");
 
 exports.createProduto = async (req, res) => {
   const { nome, precovenda, quantidadeestoque, id_tipoproduto } = req.body;
-  // const verificador = isEmpty([
-  //   { nome: "Nome", valor: nome },
-  //   { nome: "Preço de Venda", valor: precoVenda },
-  //   { nome: "Quantidade em Estoque", valor: quantidadeEstoque },
-  //   { nome: "Tipo de Produto", valor: id_tipoProduto },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
+  const verificador = isEmpty([
+    { nome: "Nome", valor: nome },
+    { nome: "Preço de Venda", valor: precovenda },
+    { nome: "Quantidade em Estoque", valor: quantidadeestoque },
+    { nome: "Tipo de Produto", valor: id_tipoproduto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO produto (nome, precovenda, quantidadeestoque, id_tipoproduto) VALUES ($1, $2, $3, $4)",
     [nome, precovenda, quantidadeestoque, id_tipoproduto]
@@ -28,7 +28,7 @@ exports.createProduto = async (req, res) => {
     },
   });
 };
-// };
+};
 
 // ==> Método responsável por listar todos os 'Produtos':
 exports.listAllProduto = async (req, res) => {
@@ -53,18 +53,18 @@ exports.findProdutoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Produto' pelo 'Id':
 exports.updateProdutoById = async (req, res) => {
   const id_produto = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { nome: "Nome", valor: req.body.nome },
-  //   { nome: "Preço de Venda", valor: req.body.precoVenda },
-  //   { nome: "Quantidade em Estoque", valor: req.body.quantidadeEstoque },
-  //   { nome: "Tipo de Produto", valor: req.body.id_tipoProduto },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { nome, precovenda, quantidadeestoque, id_tipoproduto } = req.body;
+  const verificador = isEmpty([
+    { nome: "Nome", valor: req.body.nome },
+    { nome: "Preço de Venda", valor: req.body.precovenda },
+    { nome: "Quantidade em Estoque", valor: req.body.quantidadeestoque },
+    { nome: "Tipo de Produto", valor: req.body.id_tipoproduto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE produto SET nome = $1, precovenda = $2, quantidadeestoque = $3, id_tipoproduto = $4 WHERE id_produto = $5",
@@ -73,7 +73,7 @@ exports.updateProdutoById = async (req, res) => {
 
   res.status(200).send({ message: "Produto atualizado com sucesso!" });
 };
-// };
+};
 
 // ==> Método responsável por excluir uma 'Produto' pelo 'Id':
 exports.deleteProdutoById = async (req, res) => {

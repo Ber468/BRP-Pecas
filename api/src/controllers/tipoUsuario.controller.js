@@ -1,9 +1,18 @@
 const db = require("../config/database");
+const isEmpty = require("../validation/isEmpty");
 
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createTipoUsuario = async (req, res) => {
   const { tipo_nome } = req.body;
+  const verificador = isEmpty([
+    { nome: "Nome", valor: tipo_nome },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO tipoUsuario (tipo_nome) VALUES ($1)",
     [tipo_nome]
@@ -15,6 +24,7 @@ exports.createTipoUsuario = async (req, res) => {
       tipoUsuario: { tipo_nome },
     },
   });
+};
 };
 
 // ==> Método responsável por listar todos os 'Tipos de Usuarios':
@@ -38,15 +48,15 @@ exports.findTipoUsuarioById = async (req, res) => {
 // ==> Método responsável por atualizar um 'TipoUsuario' pelo 'Id':
 exports.updateTipoUsuarioById = async (req, res) => {
   const id_tipousuario = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { tipo_nome: "Tipo Nome", valor: tipo_nome },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { tipo_nome } = req.body;
+  const verificador = isEmpty([
+    { tipo_nome: "Tipo Nome", valor: tipo_nome },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE TipoUsuario SET tipo_nome = $1 WHERE id_tipousuario = $2",
@@ -55,7 +65,7 @@ exports.updateTipoUsuarioById = async (req, res) => {
 
   res.status(200).send({ message: "Tipo de Usuario atualizado com sucesso!" });
 };
-// };
+};
 
 // ==> Método responsável por excluir um 'TipoUsuario' pelo 'Id':
 exports.deleteTipoUsuarioById = async (req, res) => {

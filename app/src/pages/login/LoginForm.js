@@ -47,6 +47,8 @@ const LoginForm = (props) => {
             className="test"
             type="text"
             name="email"
+            {...register("email", { required: true, message: 'O email é obrigatório' },
+            )}
             placeholder="Email"
             id="email"
             value={credenciais.email}

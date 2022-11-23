@@ -1,10 +1,22 @@
 const db = require("../config/database");
 const jwt = require("jsonwebtoken");
+const isEmpty = require("../validation/isEmpty");
 
 // ==> Método responsável por criar um novo 'Product':
 
 exports.createUsuario = async (req, res) => {
   const { nome_usuario, email, senha, id_tipousuario } = req.body;
+  const verificador = isEmpty([
+    { nome_usuario: "Nome do Usuario", valor: nome_usuario },
+    { email: "Email", valor: email },
+    { senha: "Senha", valor: senha },
+    { id_tipousuario: "Tipo de Usuario", valor: id_tipousuario },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO usuario (nome_usuario, email, senha, id_tipoUsuario) VALUES ($1, $2, $3, $4)",
     [nome_usuario, email, senha, id_tipousuario]
@@ -16,6 +28,7 @@ exports.createUsuario = async (req, res) => {
       usuario: { nome_usuario, email, senha, id_tipousuario },
     },
   });
+};
 };
 
 // ==> Método responsável por listar todos os 'Usuarios':
@@ -41,18 +54,18 @@ exports.findUsuarioById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Usuario' pelo 'Id':
 exports.updateUsuarioById = async (req, res) => {
   const id_usuario = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { nome: "Nome", valor: req.body.nome },
-  //   { nome: "Email", valor: req.body.email },
-  //   { nome: "Senha", valor: req.body.senha },
-  //   { nome: "Tipo de Usuario", valor: req.body.id_tipoUsuario },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { nome_usuario, email, senha, id_tipousuario } = req.body;
+  const verificador = isEmpty([
+    { nome: "Nome", valor: req.body.nome_usuario },
+    { nome: "Email", valor: req.body.email },
+    { nome: "Senha", valor: req.body.senha },
+    { nome: "Tipo de Usuario", valor: req.body.id_tipousuario },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE usuario SET nome_usuario = $1, email = $2, senha = $3, id_tipoUsuario = $4 WHERE id_usuario = $5",
@@ -60,6 +73,7 @@ exports.updateUsuarioById = async (req, res) => {
   );
 
   res.status(200).send({ message: "Usuario atualizado com sucesso!" });
+};
 };
 
 // ==> Método responsável por excluir um 'Usuario' pelo 'Id':

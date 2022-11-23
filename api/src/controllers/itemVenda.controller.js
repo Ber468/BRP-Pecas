@@ -5,16 +5,16 @@ const isEmpty = require("../validation/isEmpty");
 
 exports.createItemVenda = async (req, res) => {
   const { valor, id_venda, id_produto } = req.body;
-  // const verificador = isEmpty([
-  //   { valor: "Valor", valor: valor },
-  //   { valor: "Id venda", valor: id_venda },
-  //   { valor: "Id produto", valor: id_produto },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
+  const verificador = isEmpty([
+    { valor: "Valor", valor: valor },
+    { valor: "Id venda", valor: id_venda },
+    { valor: "Id produto", valor: id_produto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO itemvenda (valor, id_venda, id_produto) VALUES ($1, $2, $3)",
     [valor, id_venda, id_produto]
@@ -27,7 +27,7 @@ exports.createItemVenda = async (req, res) => {
     },
   });
 };
-// };
+};
 
 // ==> Método responsável por listar todos os 'Itens de vendas':
 exports.listAllItemVenda = async (req, res) => {
@@ -53,17 +53,17 @@ exports.findItemVendaById = async (req, res) => {
 // ==> Método responsável por atualizar um 'ItemVenda' pelo 'Id':
 exports.updateItemVendaById = async (req, res) => {
   const id_itemvenda = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { valor: "Valor", valor: valor },
-  //   { valor: "Id venda", valor: id_venda },
-  //   { valor: "Id produto", valor: id_produto },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { valor, id_venda, id_produto } = req.body;
+  const verificador = isEmpty([
+    { valor: "Valor", valor: valor },
+    { valor: "Id venda", valor: id_venda },
+    { valor: "Id produto", valor: id_produto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE itemvenda SET valor = $1, id_venda = $2, id_produto = $3 WHERE id_itemvenda = $4",
@@ -72,7 +72,7 @@ exports.updateItemVendaById = async (req, res) => {
 
   res.status(200).send({ message: "ItemVenda atualizado com sucesso!" });
 };
-// };
+};
 
 // ==> Método responsável por excluir uma 'ItemVenda' pelo 'Id':
 exports.deleteItemVendaById = async (req, res) => {

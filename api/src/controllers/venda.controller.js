@@ -5,17 +5,17 @@ const isEmpty = require("../validation/isEmpty");
 
 exports.createVenda = async (req, res) => {
   const { data, valortotal, id_usuario, id_cliente } = req.body;
-  // const verificador = isEmpty([
-  //   { data: "Data", valor: data },
-  //   { data: "Valor Total", valor: valorTotal },
-  //   { data: "Id do Usuário", valor: id_usuario },
-  //   { data: "Id do Cliente", valor: id_cliente },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
+  const verificador = isEmpty([
+    { data: "Data", valor: data },
+    { data: "Valor Total", valor: valortotal },
+    { data: "Id do Usuário", valor: id_usuario },
+    { data: "Id do Cliente", valor: id_cliente },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO venda (data, valortotal, id_usuario, id_cliente) VALUES ($1, $2, $3, $4)",
     [data, valortotal, id_usuario, id_cliente]
@@ -28,7 +28,7 @@ exports.createVenda = async (req, res) => {
     },
   });
 };
-// };
+};
 
 // ==> Método responsável por listar todas as 'Vendas':
 exports.listAllVenda = async (req, res) => {
@@ -55,18 +55,18 @@ exports.findVendaById = async (req, res) => {
 // ==> Método responsável por atualizar um 'Venda' pelo 'Id':
 exports.updateVendaById = async (req, res) => {
   const id_venda = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { data: "Data", valor: data },
-  //   { data: "Valor Total", valor: valorTotal },
-  //   { data: "Id do Usuário", valor: id_usuario },
-  //   { data: "Id do Cliente", valor: id_cliente },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { data, valorTotal, id_usuario, id_cliente } = req.body;
+  const verificador = isEmpty([
+    { data: "Data", valor: data },
+    { data: "Valor Total", valor: valorTotal },
+    { data: "Id do Usuário", valor: id_usuario },
+    { data: "Id do Cliente", valor: id_cliente },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE venda SET data = $1, valorTotal = $2, id_usuario = $3, id_cliente = $4 WHERE id_venda = $5",
@@ -75,7 +75,7 @@ exports.updateVendaById = async (req, res) => {
 
   res.status(200).send({ message: "Venda atualizada com sucesso!" });
 };
-// };
+};
 
 // ==> Método responsável por excluir uma 'Venda' pelo 'Id':
 exports.deleteVendaById = async (req, res) => {

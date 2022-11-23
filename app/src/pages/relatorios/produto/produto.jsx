@@ -5,7 +5,7 @@ function produtoPDF(produtos){
 
     const relatorioTitulo = [
         {
-            text: 'Produtos',
+            text: 'Relatório sobre todos os produtos',
             fontSize: 15,
             bold: true,
             alignment: 'center',

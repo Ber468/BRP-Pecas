@@ -2,7 +2,7 @@ import React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
-import { Dropdown } from "bootstrap";
+import { Dropdown } from "primereact/dropdown";
 
 const ProdutoForm = (props) => {
   const handleInputChange = (event) => {

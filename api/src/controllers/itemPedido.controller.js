@@ -5,16 +5,16 @@ const isEmpty = require("../validation/isEmpty");
 
 exports.createItemPedido = async (req, res) => {
   const { quantidade, id_pedido, id_produto } = req.body;
-  // const verificador = isEmpty([
-  //   { nome: "Quantidade", valor: quantidade },
-  //   { nome: "Id do Pedido", valor: id_pedido },
-  //   { nome: "Id do Produto", valor: id_produto },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
+  const verificador = isEmpty([
+    { nome: "Quantidade", valor: quantidade },
+    { nome: "Id do Pedido", valor: id_pedido },
+    { nome: "Id do Produto", valor: id_produto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
   const { rows } = await db.query(
     "INSERT INTO itemPedido (quantidade, id_pedido, id_produto) VALUES ($1, $2, $3)",
     [quantidade, id_pedido, id_produto]
@@ -27,7 +27,7 @@ exports.createItemPedido = async (req, res) => {
     },
   });
 };
-// };
+};
 
 // ==> Método responsável por listar todas as 'itemPedido':
 exports.listAllItemPedido = async (req, res) => {
@@ -53,17 +53,17 @@ exports.findItemPedidoById = async (req, res) => {
 // ==> Método responsável por atualizar um 'itemPedido' pelo 'Id':
 exports.updateItemPedidoById = async (req, res) => {
   const id_itemPedido = parseInt(req.params.id);
-  // const verificador = isEmpty([
-  //   { nome: "Quantidade", valor: quantidade },
-  //   { nome: "Id do Pedido", valor: id_pedido },
-  //   { nome: "Id do Produto", valor: id_produto },
-  // ]);
-  // if (verificador) {
-  //   res.status(500).send({
-  //     message: verificador,
-  //   });
-  // } else {
   const { quantidade, id_pedido, id_produto } = req.body;
+  const verificador = isEmpty([
+    { nome: "Quantidade", valor: quantidade },
+    { nome: "Id do Pedido", valor: id_pedido },
+    { nome: "Id do Produto", valor: id_produto },
+  ]);
+  if (verificador) {
+    res.status(500).send({
+      message: verificador,
+    });
+  } else {
 
   const response = await db.query(
     "UPDATE itemPedido SET quantidade = $1, id_pedido = $2, id_produto = $3 WHERE id_itemPedido = $4",
@@ -72,7 +72,7 @@ exports.updateItemPedidoById = async (req, res) => {
 
   res.status(200).send({ message: "ItemPedido atualizada com sucesso!" });
 };
-// };
+};
 
 // ==> Método responsável por excluir uma 'ItemPedido' pelo 'Id':
 exports.deleteItemPedidoById = async (req, res) => {

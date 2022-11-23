@@ -43,7 +43,7 @@ const ItemPedidoForm = (props) => {
                   onChange={(handleInputChange) =>
                     props.setItemPedido((itemPedido) => ({
                       ...itemPedido,
-                      id_itempedido: handleInputChange.value,
+                      id_pedido: handleInputChange.value,
                     }))
                   }
                   optionLabel="descricao"
@@ -62,7 +62,7 @@ const ItemPedidoForm = (props) => {
                   onChange={(handleInputChange) =>
                     props.setItemPedido((itemPedido) => ({
                       ...itemPedido,
-                      id_itempedido: handleInputChange.value,
+                      id_produto: handleInputChange.value,
                     }))
                   }
                   optionLabel="nome"
