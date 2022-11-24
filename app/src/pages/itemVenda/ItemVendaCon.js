@@ -11,11 +11,13 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
+import { useSearchParams } from "react-router-dom";
 
 function ItemVendaCont() {
   const [itemVendas, setItemVendas] = useState([]);
   const [vendas, setVendas] = useState([]);
   const [produtos, setProdutos] = useState([]);
+  const [URLSearchParams] = useSearchParams();
 
   const toastRef = useRef();
 
@@ -60,7 +62,8 @@ function ItemVendaCont() {
   }, []);
 
   const onClickAtualizar = () => {
-    ItemVendaSrv.listar()
+    const id = URLSearchParams.get("id");
+    ItemVendaSrv.listar(id)
       .then((response) => {
         setItemVendas(response.data);
         toastRef.current.show({
@@ -80,8 +83,8 @@ function ItemVendaCont() {
 
   const initialState = {
     id_itemvenda: null,
-    valor: 0,
-    id_venda: 0,
+    quantidade: 0,
+    id_venda: Number(URLSearchParams.get("id")),
     id_produto: 0,
   };
 

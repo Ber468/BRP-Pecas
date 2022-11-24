@@ -6,7 +6,7 @@ const itemVendaController = require('../controllers/itemVenda.controller');
 // ==> Rota responsável por criar um novo 'itemVenda': (POST): localhost:3001/api/itemVenda
 router.post('/itemVenda', itemVendaController.createItemVenda);
 // ==> Rota responsável por listar todos os 'itemVendas': (GET): localhost:3001/api/itemVenda
-router.get('/itemVenda', itemVendaController.listAllItemVenda);
+router.get('/venda/:id/itemVenda', itemVendaController.listAllItemVenda);
 // ==> Rota responsável por selecionar 'itemVenda' pelo 'Id': (GET): localhost:3001/api/itemVenda/:id
 router.get('/itemVenda/:id', itemVendaController.findItemVendaById);
 // ==> Rota responsável por atualizar 'itemVenda' pelo 'Id': (PUT): localhost: 3001/api/itemVenda/:id

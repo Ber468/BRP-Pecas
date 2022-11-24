@@ -32,12 +32,35 @@ exports.createVenda = async (req, res) => {
 
 // ==> Método responsável por listar todas as 'Vendas':
 exports.listAllVenda = async (req, res) => {
+  let vendas = [];
   const response = await db.query(
-    "SELECT venda.id_venda, venda.data, venda.valorTotal, usuario.nome_usuario as usuario, " +
+    "SELECT venda.id_venda, venda.data, usuario.nome_usuario as usuario, itemvenda.prdpreco, itemvenda.quantidade, " +
       "cliente.nome as cliente  from venda inner join usuario on venda.id_usuario = usuario.id_usuario " +
-      "inner join cliente on venda.id_cliente = cliente.id_cliente"
+      "inner join cliente on venda.id_cliente = cliente.id_cliente inner join itemvenda on itemvenda.id_venda = venda.id_venda"
   );
-  res.status(200).send(response.rows);
+  vendas = response.rows.filter((venda, index, self) => {
+    return index === self.findIndex((t) => t.id_venda === venda.id_venda);
+  });
+  response.rows.forEach((item) => {
+    vendas.forEach((venda) => {
+      if (venda.id_venda === item.id_venda) {
+        if (!venda.itens) {
+          venda.itens = [];
+        }
+        venda.itens.push({
+          id: item.id,
+          prdpreco: item.prdpreco,
+          quantidade: item.quantidade,
+        });
+      }
+    });
+  });
+  vendas.forEach((venda, index) => {
+    vendas[index].valorTotal = venda.itens.reduce((a, b) => {
+      return a + b.prdpreco * b.quantidade;
+    }, 0);
+  });
+  res.status(200).send(vendas.map((venda) => ({ ...venda, prdpreco: undefined, quantidade: undefined })));
 };
 
 // ==> Método responsável por selecionar 'Venda' pelo 'Id':

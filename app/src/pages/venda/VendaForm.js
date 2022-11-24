@@ -40,16 +40,6 @@ const VendaForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
-                <label htmlFor="valortotal">Valor Total</label>
-                    <InputText
-                      name="valortotal"
-                      defaultValue={props.venda.valortotal}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-            <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
                 <label htmlFor="id_usuario">Usuario:</label>
                 <Dropdown

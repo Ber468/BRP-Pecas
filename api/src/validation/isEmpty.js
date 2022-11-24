@@ -4,7 +4,7 @@ function VerificarEmpty(objValores) {
   
     objValores?.forEach(({ nome, valor }) => {
   
-      if (!valor || valor.toString().trim() === '') mensagem = `O campo ${nome} não foi informado`
+      if (!valor || valor.toString().trim() === '' && valor != 0) mensagem = `O campo ${nome} não foi informado` 
     });
   
     return mensagem;

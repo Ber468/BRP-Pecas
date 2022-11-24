@@ -1,5 +1,5 @@
 git add .
-git commit -m "Ajustes finais"
+git commit -m "Implementacao de itensVenda"
 git push -u origin main
 
 

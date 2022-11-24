@@ -25,30 +25,11 @@ const ItemVendaForm = (props) => {
           <div style={{marginLeft:"40%"}}>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
-                <label htmlFor="valor">Valor</label>
+                <label htmlFor="quantidade">Quantidade</label>
                 <InputText
-                  name="valor"
-                  value={props.itemVenda.valor}
+                  name="quantidade"
+                  value={props.itemVenda.quantidade}
                   onChange={handleInputChange}
-                />
-              </div>
-            </div>
-            <div className="p-fluid grid formgrid">
-              <div className="field col-12 md:col-4">
-                <label htmlFor="id_venda">Valor Total Venda:</label>
-                <Dropdown
-                  name="id_venda"
-                  value={props.itemVenda.id_venda}
-                  options={props.vendas}
-                  onChange={(handleInputChange) =>
-                    props.setItemVenda((itemVenda) => ({
-                      ...itemVenda,
-                      id_venda: handleInputChange.value,
-                    }))
-                  }
-                  optionLabel="valortotal"
-                  optionValue="id_venda"
-                  placeholder="Selecione o valor total da venda"
                 />
               </div>
             </div>

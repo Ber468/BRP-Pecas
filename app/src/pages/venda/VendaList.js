@@ -71,6 +71,9 @@ const VendaList = (props) => {
         >
           Excluir
         </button>
+        <button style={{margin: '8px'}} type="button" className="btn btn-info">
+          <Link to={`/itemVenda?id=${rowData.id_venda}`} style={{textDecoration: "none", color: "black"}}>Itens Vendas</Link>
+        </button>
       </React.Fragment>
     );
   };
@@ -92,9 +95,6 @@ const VendaList = (props) => {
           onClick={props.inserir}
         >
           Inserir
-        </button>
-        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
-          <Link to="/itemVenda" style={{textDecoration: "none", color: "black"}}>Itens Vendas</Link>
         </button>
         <button 
         style={{margin: '8px'}} 
@@ -122,7 +122,11 @@ const VendaList = (props) => {
               filter
             ></Column>
             <Column
-              field="valortotal"
+             body={
+                (rowData) => {
+                  return rowData.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+             }}
+              field="valorTotal"
               header="Valor Total"
               sortable
               filter
