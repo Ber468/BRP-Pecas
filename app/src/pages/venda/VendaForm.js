@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
-import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
 
 const VendaForm = (props) => {

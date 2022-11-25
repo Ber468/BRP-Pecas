@@ -47,25 +47,13 @@ exports.findItemVendaById = async (req, res) => {
 // ==> Método responsável por atualizar um 'ItemVenda' pelo 'Id':
 exports.updateItemVendaById = async (req, res) => {
   const id_itemvenda = parseInt(req.params.id);
-  const { quantidade, id_venda, id_produto } = req.body;
-  const verificador = isEmpty([
-    { valor: "Valor", valor: quantidade },
-    { valor: "Id venda", valor: id_venda },
-    { valor: "Id produto", valor: id_produto },
-  ]);
-  if (verificador) {
-    res.status(500).send({
-      message: verificador,
-    });
-  } else {
-
+  const { quantidade, id_produto } = req.body;
   const response = await db.query(
-    "UPDATE itemvenda SET quantidade = $1, id_venda = $2, id_produto = $3 WHERE id_itemvenda = $4",
-    [quantidade, id_venda, id_produto, id_itemvenda]
+    "UPDATE itemvenda SET quantidade = $1, id_produto = $2 WHERE id_itemvenda = $3",
+    [quantidade, id_produto, id_itemvenda]
   );
 
   res.status(200).send({ message: "ItemVenda atualizado com sucesso!" });
-};
 };
 
 // ==> Método responsável por excluir uma 'ItemVenda' pelo 'Id':

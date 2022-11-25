@@ -115,6 +115,7 @@ const VendaList = (props) => {
             paginatorClassName="justify-content-center"
             className="mt-6"
           >
+            <Column field="id_venda" header="ID Venda" sortable></Column>
             <Column
               body={dateBodyTemplate}
               header="Data"

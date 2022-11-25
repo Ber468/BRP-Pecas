@@ -5,6 +5,7 @@ import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import LoginSrv from "./LoginSrv";
 import "primeicons/primeicons.css";
+import { InputText } from "primereact/inputtext";
 
 const LoginForm = (props) => {
   const handleInputChange = (event) => {
@@ -43,27 +44,51 @@ const LoginForm = (props) => {
       <div>
         <div className="form">
           <h2>Login</h2>
-          <input
-            className="test"
+          <InputText
             type="text"
             name="email"
-            {...register("email", { required: true, message: 'O email é obrigatório' },
-            )}
-            placeholder="Email"
+            {...register("email", { 
+            required: { 
+            value: true, 
+            message: "O email é obrigatório",
+            },
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: "Email inválido",
+            },
+          })}
             id="email"
             value={credenciais.email}
             onChange={handleInputChange}
           />
-          <br></br>
-          <input
-            className="test"
+          <p></p>
+          {errors.email && (
+          <span style={{ color: "red", fontFamily: "Verdana", fontWeigth: "bold"}}>
+          {errors.email.message}
+          </span>
+          )}
+          <br/><br/>
+          <InputText
             type="password"
             name="senha"
-            placeholder="Senha"
+            {...register("senha", {
+            required: {
+            value: true,
+            message: "A senha é obrigatória",
+            },
+          })}
             id="senha"
-            value={credenciais.ususenha}
+            value={credenciais.senha}
             onChange={handleInputChange}
           />
+          <p></p>
+          {errors.senha && (
+          <span style={{ color: "red", fontFamily: "Verdana", fontWeigth: "bold"}}
+          >
+          {errors.senha.message}
+          </span>
+          )}
+          <br></br>
           <button type="submit" className="button">
             Entrar
           </button>
