@@ -97,14 +97,23 @@ const ItemPedidoList = (props) => {
             paginatorClassName="justify-content-center"
             className="mt-6"
           >
+            <Column field="produto" header="Nome Produto" sortable filter></Column>
             <Column
               field="quantidade"
               header="Quantidade"
               sortable
               filter
             ></Column>
-            <Column field="pedido" header="Pedido" sortable filter></Column>
-            <Column field="produto" header="Produto" sortable filter></Column>
+            <Column
+            body={
+              (rowData) => {
+                return rowData.prdvalor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+            }}
+              field="prdvalor"
+              header="Preco"
+              sortable
+              filter
+            ></Column>
             <Column header="Operações" body={countryBodyTemplate}></Column>
           </DataTable>
         </div>

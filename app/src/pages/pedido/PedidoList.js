@@ -3,7 +3,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Link } from "react-router-dom";
-import pedidoPDF from "../relatorios/pedido/pedido";
 
 const template2 = {
   layout:
@@ -71,6 +70,9 @@ const PedidoList = (props) => {
         >
           Excluir
         </button>
+        <button style={{margin: '8px'}} type="button" className="btn btn-info">
+          <Link to={`/itemPedido?id=${rowData.id_pedido}`} style={{textDecoration: "none", color: "black"}}>Itens Pedidos</Link>
+        </button>
       </React.Fragment>
     );
   };
@@ -93,17 +95,6 @@ const PedidoList = (props) => {
         >
           Inserir
         </button>
-        <button style={{margin: '8px'}} type="button" className="btn btn-light btn-sm">
-          <Link to="/itemPedido" style={{textDecoration: "none", color: "black"}}>Itens Pedidos</Link>
-        </button>
-        <button 
-        style={{margin: '8px'}} 
-        type="button" 
-        className="btn btn-light btn-sm"
-        onClick={(e) => pedidoPDF(props.pedidos)}
-        >
-          Gerar PDF
-        </button>
         <div className="card">
           <DataTable
             value={props.pedidos}
@@ -115,13 +106,18 @@ const PedidoList = (props) => {
             paginatorClassName="justify-content-center"
             className="mt-6"
           >
-            <Column
-              field="descricao"
-              header="Descricao"
-              sortable
-              filter
-            ></Column>
+            <Column field="id_pedido" header="ID Pedido" sortable></Column>
             <Column body={dateBodyTemplate} header="Data" sortable filter></Column>
+            <Column
+            body={
+              (rowData) => {
+                return rowData.precoTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+            }}
+            field="precoTotal"
+            header="Preço Total"
+            sortable
+            filter
+            ></Column>
             <Column
               field="nomefantasia"
               header="Fornecedor"

@@ -35,25 +35,6 @@ const ItemPedidoForm = (props) => {
                 </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12 md:col-4">
-                <label htmlFor="id_pedido">Pedido:</label>
-                <Dropdown
-                  name="id_pedido"
-                  value={props.itemPedido.id_pedido}
-                  options={props.pedidos}
-                  onChange={(handleInputChange) =>
-                    props.setItemPedido((itemPedido) => ({
-                      ...itemPedido,
-                      id_pedido: handleInputChange.value,
-                    }))
-                  }
-                  optionLabel="descricao"
-                  optionValue="id_pedido"
-                  placeholder="Selecione um Pedido"
-                />
-              </div>
-            </div>
-            <div className="p-fluid grid formgrid">
-              <div className="field col-12 md:col-4">
                 <label htmlFor="id_produto">Produto:</label>
                 <Dropdown
                   name="id_produto"

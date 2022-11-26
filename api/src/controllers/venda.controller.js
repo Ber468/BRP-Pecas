@@ -33,8 +33,8 @@ exports.createVenda = async (req, res) => {
 exports.listAllVenda = async (req, res) => {
   let vendas = [];
   const response = await db.query(
-    "SELECT venda.id_venda, venda.data, usuario.nome_usuario as usuario, itemvenda.prdpreco, itemvenda.quantidade, " +
-      "cliente.nome as cliente  from venda inner join usuario on venda.id_usuario = usuario.id_usuario " +
+    "SELECT venda.id_venda, venda.data, usuario.nome_usuario as usuario, venda.id_usuario, itemvenda.prdpreco, itemvenda.quantidade, " +
+      "cliente.nome as cliente, venda.id_cliente from venda inner join usuario on venda.id_usuario = usuario.id_usuario " +
       "inner join cliente on venda.id_cliente = cliente.id_cliente left join itemvenda on itemvenda.id_venda = venda.id_venda"
   );
   vendas = response.rows.filter((venda, index, self) => {

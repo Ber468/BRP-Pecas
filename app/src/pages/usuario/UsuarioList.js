@@ -108,7 +108,6 @@ const UsuarioList = (props) => {
           >
             <Column field="nome_usuario" header="Nome" sortable filter></Column>
             <Column field="email" header="Email" sortable filter></Column>
-            <Column field="senha" header="Senha" sortable filter></Column>
             <Column
               field="tipo_nome"
               header="Tipo Usuario"

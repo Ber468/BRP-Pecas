@@ -11,11 +11,13 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
+import { useSearchParams } from "react-router-dom";
 
 function ItemPedidoCont() {
   const [itemPedidos, setItemPedidos] = useState([]);
   const [pedidos, setPedidos] = useState([]);
   const [produtos, setProdutos] = useState([]);
+  const [URLSearchParams] = useSearchParams();
 
   const toastRef = useRef();
 
@@ -60,7 +62,8 @@ function ItemPedidoCont() {
   }, []);
 
   const onClickAtualizar = () => {
-    ItemPedidoSrv.listar()
+    const id = URLSearchParams.get("id");
+    ItemPedidoSrv.listar(id)
       .then((response) => {
         setItemPedidos(response.data);
         toastRef.current.show({
@@ -81,7 +84,7 @@ function ItemPedidoCont() {
   const initialState = {
     id_itempedido: null,
     quantidade: 0,
-    id_pedido: 0,
+    id_pedido: Number(URLSearchParams.get("id")),
     id_produto: 0,
   };
 

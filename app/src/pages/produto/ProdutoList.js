@@ -108,6 +108,11 @@ const ProdutoList = (props) => {
           >
             <Column field="nome" header="Nome" sortable filter></Column>
             <Column
+              body={
+                (rowData) => {
+                  return rowData.precovenda.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+                }
+              }
               field="precovenda"
               header="PrecoVenda"
               sortable

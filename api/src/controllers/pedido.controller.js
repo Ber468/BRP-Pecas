@@ -32,10 +32,33 @@ exports.createPedido = async (req, res) => {
 // ==> Método responsável por listar todos os 'Pedidos':
 exports.listAllPedido = async (req, res) => {
   const response = await db.query(
-    "SELECT pedido.id_pedido, pedido.descricao, pedido.data, fornecedor.nomeFantasia as nomeFantasia " +
-      "from pedido inner join fornecedor on pedido.id_fornecedor = fornecedor.id_fornecedor"
+    "SELECT pedido.id_pedido, pedido.descricao, pedido.data, fornecedor.nomefantasia as nomefantasia, pedido.id_fornecedor, " +
+      "itempedido.prdvalor, itempedido.quantidade from pedido inner join fornecedor on pedido.id_fornecedor = fornecedor.id_fornecedor " +
+      "left join itempedido on itempedido.id_pedido = pedido.id_pedido"
   );
-  res.status(200).send(response.rows);
+  pedidos = response.rows.filter((pedido, index, self) => {
+    return index === self.findIndex((t) => t.id_pedido === pedido.id_pedido);
+  });
+  response.rows.forEach((item) => {
+    pedidos.forEach((pedido) => {
+      if (pedido.id_pedido === item.id_pedido) {
+        if (!pedido.itens) {
+          pedido.itens = [];
+        }
+        pedido.itens.push({
+          id: item.id,
+          prdvalor: item.prdvalor,
+          quantidade: item.quantidade,
+        });
+      }
+    });
+  });
+  pedidos.forEach((pedido, index) => {
+    pedidos[index].precoTotal = pedido.itens.reduce((a, b) => {
+      return a + b.prdvalor * b.quantidade;
+      }, 0);
+      });
+  res.status(200).send(pedidos.map((pedido) => ({...pedido, prdvalor: undefined, quantidade: undefined})));
 };
 
 // ==> Método responsável por selecionar 'Pedido' pelo 'Id':
@@ -80,6 +103,3 @@ exports.deletePedidoById = async (req, res) => {
 
   res.status(200).send({ message: "Pedido deletado com sucesso!", id_pedido });
 };
-
-"SELECT pedido.descricao, pedido.data, fornecedor.nomeFantasia as nomeFantasia " +
-  "from pedido inner join fornecedor on pedido.id_fornecedor = fornecedor.id_fornecedor";

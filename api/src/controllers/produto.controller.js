@@ -34,7 +34,7 @@ exports.createProduto = async (req, res) => {
 exports.listAllProduto = async (req, res) => {
   const response = await db.query(
     "SELECT produto.id_produto, produto.nome, produto.quantidadeestoque, produto.precovenda, tipoProduto.descricao " +
-      "as descricao from produto inner join tipoProduto on produto.id_tipoproduto = tipoProduto.id_tipoproduto"
+      "as descricao, produto.id_tipoproduto from produto inner join tipoProduto on produto.id_tipoproduto = tipoProduto.id_tipoproduto"
   );
   res.status(200).send(response.rows);
 };

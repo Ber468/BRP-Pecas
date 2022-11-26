@@ -1,5 +1,4 @@
 const db = require("../config/database");
-const isEmpty = require("../validation/isEmpty");
 
 // ==> Método responsável por criar um novo 'Product':
 exports.createItemVenda = async (req, res) => {
@@ -25,7 +24,7 @@ exports.createItemVenda = async (req, res) => {
 // ==> Método responsável por listar todos os 'Itens de vendas':
 exports.listAllItemVenda = async (req, res) => {
   const response = await db.query(
-    "SELECT itemvenda.id_itemvenda, itemvenda.quantidade, itemvenda.prdpreco, produto.nome as produto  from itemvenda " +
+    "SELECT itemvenda.id_itemvenda, itemvenda.quantidade, itemvenda.prdpreco, produto.nome as produto, itemvenda.id_produto  from itemvenda " +
       "INNER JOIN produto ON itemvenda.id_produto = produto.id_produto WHERE itemvenda.id_venda = $1", 
     [req.params.id]
   );

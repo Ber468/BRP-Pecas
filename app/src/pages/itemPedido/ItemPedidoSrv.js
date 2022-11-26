@@ -1,8 +1,8 @@
 import axios from "../../Services/api";
 class ItemPedidoSrv {
   url = "/itemPedido";
-  async listar() {
-    return await axios.get(this.url).catch((err) => {
+  async listar(id) {
+    return await axios.get(`pedido/${id}${this.url}`).catch((err) => {
       throw err;
     });
   }

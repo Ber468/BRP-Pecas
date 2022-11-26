@@ -34,7 +34,7 @@ exports.createUsuario = async (req, res) => {
 // ==> Método responsável por listar todos os 'Usuarios':
 exports.listAllUsuario = async (req, res) => {
   const response = await db.query(
-    "SELECT usuario.id_usuario, usuario.nome_usuario, usuario.email, usuario.senha,  tipoUsuario.tipo_nome as tipo_nome " +
+    "SELECT usuario.id_usuario, usuario.nome_usuario, usuario.email, usuario.senha,  tipoUsuario.tipo_nome as tipo_nome , usuario.id_tipoUsuario " +
       "from usuario  inner join tipoUsuario on usuario.id_tipoUsuario = tipoUsuario.id_tipoUsuario"
   );
   res.status(200).send(response.rows);
