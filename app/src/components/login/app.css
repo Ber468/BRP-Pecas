@@ -14,7 +14,7 @@
 
   
   .app {
-    height: 100vh;
+    height: 130vh;
     background-color: rgb(41, 41, 41);
   }
   
@@ -104,6 +104,10 @@
 
 .pi-chevron-down:before {
   color:aliceblue !important;
+}
+
+.p-dropdown-item.p-highlight {
+  background-color: rgba(135, 135, 135, 0.407) !important;
 }
 
 

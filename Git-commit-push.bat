@@ -1,5 +1,5 @@
 git add .
-git commit -m "README.md"
+git commit -m "Pequenos ajustes"
 git push -u origin main
 
 

@@ -52,7 +52,7 @@ const ItemPedidoForm = (props) => {
                 />
               </div>
             </div>
-            <div>
+            <div style={{ marginRight: "50vh" }}>
               <Button
                 type="submit"
                 icon="pi pi-pencil"

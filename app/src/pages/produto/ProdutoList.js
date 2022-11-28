@@ -114,13 +114,13 @@ const ProdutoList = (props) => {
                 }
               }
               field="precovenda"
-              header="PrecoVenda"
+              header="Preco Venda"
               sortable
               filter
             ></Column>
             <Column
               field="quantidadeestoque"
-              header="QuantidadeEstoque"
+              header="Quantidade Estoque"
               sortable
               filter
             ></Column>

@@ -52,7 +52,7 @@ const ProdutoForm = (props) => {
             </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
-                <label htmlFor="precovenda">PrecoVenda</label>
+                <label htmlFor="precovenda">Preco Venda</label>
                 <InputText
                   name="precovenda"
                   defaultValue={props.produto.precovenda}
@@ -62,7 +62,7 @@ const ProdutoForm = (props) => {
             </div>
             <div className="p-fluid grid formgrid">
               <div className="field col-12  md:col-4">
-                <label htmlFor="quantidadeestoque">QuantidadeEstoque</label>
+                <label htmlFor="quantidadeestoque">Quantidade Estoque</label>
                 <InputText
                   name="quantidadeestoque"
                   defaultValue={props.produto.quantidadeestoque}
@@ -89,8 +89,8 @@ const ProdutoForm = (props) => {
                 />
               </div>
             </div>
-            <div>
-              <Button
+            <div style={{ marginRight: "50vh" }}>
+              <Button  
                 type="submit"
                 icon="pi pi-pencil"
                 className="p-button-rounded p-button-text "

@@ -106,7 +106,7 @@ const PedidoList = (props) => {
             paginatorClassName="justify-content-center"
             className="mt-6"
           >
-            <Column field="id_pedido" header="ID Pedido" sortable></Column>
+            <Column field="descricao" header="Descrição" sortable></Column>
             <Column body={dateBodyTemplate} header="Data" sortable filter></Column>
             <Column
             body={

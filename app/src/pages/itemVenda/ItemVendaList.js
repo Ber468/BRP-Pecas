@@ -50,12 +50,6 @@ const ItemVendaList = (props) => {
     return (
       <React.Fragment>
         <button
-          onClick={() => props.editar(rowData.id_itemvenda)}
-          className="btn btn-warning"
-        >
-          Editar
-        </button>
-        <button
           onClick={() => props.excluir(rowData.id_itemvenda)}
           className="btn btn-danger"
         >

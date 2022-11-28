@@ -43,7 +43,7 @@ const LoginForm = (props) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <div className="form">
-          <h2>Login</h2>
+          <h2>Faça seu login</h2>
           <InputText
             type="text"
             name="email"
@@ -89,7 +89,7 @@ const LoginForm = (props) => {
           </span>
           )}
           <br></br>
-          <button type="submit" className="button">
+          <button style={{marginLeft:"2%"}} type="submit" className="button">
             Entrar
           </button>
         </div>
