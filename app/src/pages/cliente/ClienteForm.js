@@ -26,12 +26,13 @@ const ClienteForm = (props) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
             <div style={{ padding: 20 }}>
                 <div className="card">
-                    <h5>Cadastro de Clientes</h5>
-                    <div style={{marginLeft:"40%"}}>
+                    <h5 style={{marginRight: "2.5vh"}}>Cadastro de Clientes</h5>
+                    <div style={{marginLeft:"52vh"}}>
                         <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
+                            <div className="field col-12  md:col-5">
                                 <label htmlFor="nome">Nome</label>
                                 <InputText
                                     name="nome"
@@ -58,7 +59,7 @@ const ClienteForm = (props) => {
                             </div>
                             </div>
                             <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
+                            <div className="field col-12  md:col-5">
                                 <label htmlFor="endereco">Endereço</label>
                                 <InputText
                                     name="endereco"
@@ -85,7 +86,7 @@ const ClienteForm = (props) => {
                             </div>
                             </div>
                             <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
+                            <div className="field col-12  md:col-5">
                                 <label htmlFor="cpf">CPF</label>
                                 <InputMask
                                     name="cpf"
@@ -102,7 +103,7 @@ const ClienteForm = (props) => {
                             </div>
                             </div>
                             <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
+                            <div className="field col-12  md:col-5">
                                 <label htmlFor="telefone">Telefone</label>
                                 <InputMask
                                     name="telefone"
@@ -118,16 +119,15 @@ const ClienteForm = (props) => {
                                 )}
                             </div>
                             </div>
-                            </div>
-                            
-                            <div>
                                 <Button
+                                    style={{ float: "left" }}
                                     type="submit"
                                     icon="pi pi-pencil"
                                     className="p-button-rounded p-button-text "
                                     label="Salvar"
                                 ></Button>
                                 <Button
+                                    style={{ float: "left", marginLeft: "3vh" }}
                                     type="button"
                                     icon="pi pi-trash"
                                     className="p-button-rounded p-button-text"
@@ -137,9 +137,10 @@ const ClienteForm = (props) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
                         </form>
-                        );
-                    };
+                 );
+                };
 
-                    export default ClienteForm;
+export default ClienteForm;
                             

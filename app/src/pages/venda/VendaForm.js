@@ -19,12 +19,13 @@ const VendaForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
       <div style={{ padding: 20 }}>
         <div className="card">
-          <h5>Cadastro de Vendas</h5>
-          <div style={{marginLeft:"40%"}}>
+          <h5 style={{marginRight: "0.7vh"}}>Cadastro de Vendas</h5>
+          <div style={{marginLeft:"52vh"}}>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="data">Data</label>
                 <Calendar
                   name="data"
@@ -39,7 +40,7 @@ const VendaForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12 md:col-4">
+              <div className="field col-12 md:col-5">
                 <label htmlFor="id_usuario">Usuario:</label>
                 <Dropdown
                   name="id_usuario"
@@ -58,7 +59,7 @@ const VendaForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12 md:col-4">
+              <div className="field col-12 md:col-5">
                 <label htmlFor="id_cliente">Cliente:</label>
                 <Dropdown
                   name="id_cliente"
@@ -76,8 +77,8 @@ const VendaForm = (props) => {
                 />
               </div>
             </div>
-            <div style={{ marginRight: "50vh" }}>
               <Button
+                style={{ float: "left" }}
                 type="submit"
                 icon="pi pi-pencil"
                 className="p-button-rounded p-button-text "
@@ -85,6 +86,7 @@ const VendaForm = (props) => {
                 onClick={props.salvar}
               ></Button>
               <Button
+                style={{ float: "left", marginLeft: "3vh" }}
                 type="button"
                 icon="pi pi-trash"
                 className="p-button-rounded p-button-text"

@@ -21,12 +21,13 @@ const TipoUsuarioForm = (props) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
             <div style={{ padding: 20 }}>
                 <div className="card">
-                    <h5>Cadastro de Tipos de Usuários</h5>
-                    <div style={{marginLeft:"40%"}}>
+                    <h5 style={{marginRight: "0.3vh"}}>Cadastro de Tipos de Usuários</h5>
+                    <div style={{marginLeft:"52vh"}}>
                         <div className="p-fluid grid formgrid">
-                            <div className="field col-12  md:col-4">
+                            <div className="field col-12  md:col-5">
                                 <label htmlFor="tipo_nome">Tipo Nome</label>
                                 <InputText
                                     name="tipo_nome"
@@ -52,15 +53,15 @@ const TipoUsuarioForm = (props) => {
                                 )}
                             </div>
                             </div>
-                            </div>
-                            <div>
                                 <Button
+                                    style={{ float: "left" }}
                                     type="submit"
                                     icon="pi pi-pencil"
                                     className="p-button-rounded p-button-text "
                                     label="Salvar"
                                 ></Button>
                                 <Button
+                                    style={{ float: "left", marginLeft: "3vh" }}
                                     type="button"
                                     icon="pi pi-trash"
                                     className="p-button-rounded p-button-text"
@@ -70,6 +71,7 @@ const TipoUsuarioForm = (props) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
             </form>
         );
     };

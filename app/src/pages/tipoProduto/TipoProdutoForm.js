@@ -21,12 +21,13 @@ const TipoProdutoForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
       <div style={{ padding: 20 }}>
         <div className="card">
-          <h5>Cadastro Tipos de Produtos</h5>
-          <div style={{marginLeft:"40%"}}>
+          <h5 style={{marginRight: "0.3vh"}}>Cadastro Tipos de Produtos</h5>
+          <div style={{marginLeft:"52vh"}}>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="descricao">Descricao</label>
                 <InputText
                   name="descricao"
@@ -54,15 +55,15 @@ const TipoProdutoForm = (props) => {
                 )}
               </div>
             </div>
-          </div>
-          <div>
             <Button
+              style={{ float: "left" }}
               type="submit"
               icon="pi pi-pencil"
               className="p-button-rounded p-button-text "
               label="Salvar"
             ></Button>
             <Button
+              style={{ float: "left", marginLeft: "3vh" }}
               type="button"
               icon="pi pi-trash"
               className="p-button-rounded p-button-text"
@@ -71,6 +72,7 @@ const TipoProdutoForm = (props) => {
             ></Button>
           </div>
         </div>
+      </div>
       </div>
     </form>
   );

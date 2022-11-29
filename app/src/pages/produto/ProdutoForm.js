@@ -19,12 +19,13 @@ const ProdutoForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
       <div style={{ padding: 20 }}>
         <div className="card">
-          <h5>Cadastro de Produtos</h5>
-          <div style={{marginLeft:"40%"}}>
+          <h5 style={{marginRight: "2.5vh"}}>Cadastro de Produtos</h5>
+          <div style={{marginLeft:"52vh"}}>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="nome">Nome</label>
                 <InputText
                   name="nome"
@@ -51,7 +52,7 @@ const ProdutoForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="precovenda">Preco Venda</label>
                 <InputText
                   name="precovenda"
@@ -61,7 +62,7 @@ const ProdutoForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="quantidadeestoque">Quantidade Estoque</label>
                 <InputText
                   name="quantidadeestoque"
@@ -71,7 +72,7 @@ const ProdutoForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12 md:col-4">
+              <div className="field col-12 md:col-5">
                 <label htmlFor="id_tipoproduto">Tipo Produto:</label>
                 <Dropdown
                   name="id_tipoproduto"
@@ -89,15 +90,17 @@ const ProdutoForm = (props) => {
                 />
               </div>
             </div>
-            <div style={{ marginRight: "50vh" }}>
-              <Button  
+              <Button 
+              style={{float: "left"}}
                 type="submit"
                 icon="pi pi-pencil"
                 className="p-button-rounded p-button-text "
                 label="Salvar"
                 onClick={props.salvar}
               ></Button>
+              
               <Button
+              style={{float: "left", marginLeft: "3vh"}}
                 type="button"
                 icon="pi pi-trash"
                 className="p-button-rounded p-button-text"

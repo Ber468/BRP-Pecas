@@ -20,12 +20,13 @@ const UsuarioForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
       <div style={{ padding: 20 }}>
         <div className="card">
-          <h5>Cadastro de Usuários</h5>
-          <div style={{marginLeft:"40%"}}>
+          <h5 style={{marginRight: "0.5vh"}}>Cadastro de Usuários</h5>
+          <div style={{marginLeft:"52vh"}}>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="nome_usuario">Nome</label>
                 <InputText
                   name="nome_usuario"
@@ -54,7 +55,7 @@ const UsuarioForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="email">Email</label>
                 <InputText
                   name="email"
@@ -81,7 +82,7 @@ const UsuarioForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12  md:col-4">
+              <div className="field col-12  md:col-5">
                 <label htmlFor="senha">Senha</label>
                 <InputText
                   name="senha"
@@ -109,7 +110,7 @@ const UsuarioForm = (props) => {
               </div>
             </div>
             <div className="p-fluid grid formgrid">
-              <div className="field col-12 md:col-4">
+              <div className="field col-12 md:col-5">
                 <label htmlFor="id_tipousuario">Tipo Usuario:</label>
                 <Dropdown
                   name="id_tipousuario"
@@ -127,8 +128,8 @@ const UsuarioForm = (props) => {
                 />
               </div>
             </div>
-            <div style={{ marginRight: "50vh" }}>
               <Button
+                style={{ float: "left" }}
                 type="submit"
                 icon="pi pi-pencil"
                 className="p-button-rounded p-button-text "
@@ -136,6 +137,7 @@ const UsuarioForm = (props) => {
                 onClick={props.salvar}
               ></Button>
               <Button
+                style={{ float: "left", marginLeft: "3vh" }}
                 type="button"
                 icon="pi pi-trash"
                 className="p-button-rounded p-button-text"
