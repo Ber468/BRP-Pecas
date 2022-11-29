@@ -6,9 +6,9 @@ A finalidade desse software é armazenar diversos tipos de dados com segurança 
 
 ## Diagrama de Casos de Uso
 
-<img src="./BRP-PECAS/app/src/components/img/DiagramaCasosUso.png" style="heigth: 500px; width: 500px;" />
+<img src="./app/src/components/img/DiagramaCasosUso.png" style="heigth: 500px; width: 500px;" />
 
 ## Diagrama de Classes
 
-<img src="./BRP-PECAS/app/src/components/img/DiagramaClasses.png" style="heigth: 500px; width: 500px;" />
+<img src="./app/src/components/img/DiagramaClasses.png" style="heigth: 500px; width: 500px;" />
 
