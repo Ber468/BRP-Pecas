@@ -6,9 +6,9 @@ A finalidade desse software é armazenar diversos tipos de dados com segurança 
 
 ## Diagrama de Casos de Uso
 
-<img src="./app/src/components/img/DiagramaCasosUso.png" style="heigth: 700px; width: 700px;" />
+<img src="./app/src/components/img/DiagramaCasosUso.png" style="heigth: 800px; width: 800px;" />
 
 ## Diagrama de Classes
 
-<img src="./app/src/components/img/DiagramaClasses.png" style="heigth: 700px; width: 700px;" />
+<img src="./app/src/components/img/DiagramaClasses.png" style="heigth: 800px; width: 800px;" />
 

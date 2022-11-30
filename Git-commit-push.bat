@@ -1,5 +1,5 @@
 git add .
-git commit -m "Ajuste final no README"
+git commit -m "README"
 git push -u origin main
 
 
